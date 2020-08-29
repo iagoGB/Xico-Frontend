@@ -1,0 +1,27 @@
+<nav>
+    <ul>
+        <li (click)="openDialog('modal_1','divForm')">Inscreva-se</li>
+        <li (click)="openDialog('modal_2','loginForm')">login</li>
+    </ul>
+</nav>
+
+<app-modal id="modal_1" class="hidden" [divWidth]="divWidth" [divHeight]="divHeight">
+    <div id="divForm" class="form" [formGroup]="form">
+        <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.pnghttps://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/7086878461549345958-512.pnghttps://icons-for-free.com/iconfiles/png/512/linecolor+version+svg+camera-1319964493060503417.png" alt="" srcset="">
+        <input type="file" name="imagem" id="imagem" (change)="onChange($event)"/>
+        <input type="text" name="nome" id="nome"  placeholder="nome" formControlName="name"/>
+        <input type="text" name="sobrenome" id="sobrenome" placeholder="sobrenome" formControlName="lastName" />
+        <input type="email" name="email" id="email" placeholder="email" formControlName="email">
+        <input type="text" name="ano_ingresso" id="ano_ingresso" placeholder="2020.1" formControlName="entryDate"/>
+        <input type="password" name="senha" id="senha" placeholder="senha" formControlName="password"/>
+        <input type="password" name="confirma_senha" id="confirma_senha" placeholder="confirme a senha"  formControlName="confirm_password"/>
+        <input type="button" value="CADASTRAR" (click)="onSubmit()"/>
+    </div> 
+</app-modal>
+
+<app-modal id="modal_2" class="hidden" [divWidth]="divWidth" [divHeight]="divHeight">
+    <div id="loginForm" class="form" [formGroup]="form">     
+        <input type="text" name="login" id="login" placeholder="email" />
+        <input type="password" name="password" id="password"  placeholder="senha" />
+    </div> 
+</app-modal>

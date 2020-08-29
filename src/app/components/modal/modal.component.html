@@ -1,0 +1,22 @@
+<div class="screen">
+    <div class="wraper">
+        <div 
+            [style.height.px]="divHeight" 
+            [style.width.px]="divWidth" 
+            class="background-header"
+        >  
+        <h3>{{ title }}</h3>
+        <div class="button" (click)="close()">X</div>
+        </div>
+        <div class="content">
+            <ng-content></ng-content>
+        </div>
+        <div 
+            [style.height.px]="divHeight" 
+            [style.width.px]="divWidth"  
+            class="background-footer"
+        > 
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</div>

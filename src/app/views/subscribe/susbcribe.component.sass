@@ -1,0 +1,42 @@
+$border-spacing: 25px
+$border-shape: 3px solid pink
+
+.screen
+    width: 100vw
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center
+.wraper
+    position: relative
+    display: flex
+    background-color: red
+.background-header
+    display: flex
+    bottom: $border-spacing
+    right: $border-spacing
+    position: absolute
+    border: $border-shape
+.background-footer
+    top: $border-spacing
+    left: $border-spacing
+    position: absolute
+    border: $border-shape
+div.form
+    padding: 10px
+    z-index: 100
+    display: flex
+    width: 400px // Esse with deve vir de fora do componente reutilizável
+    flex-direction: column
+    background-color: pink
+    input
+        padding: 5px 10px
+        margin: 10px 20px
+h3
+    font-size: 30px
+    margin: 0px
+    margin-left: 20px
+    padding: 0px
+div.button
+    position: absolute
+    right: -50px
