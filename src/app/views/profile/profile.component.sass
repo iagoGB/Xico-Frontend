@@ -1,0 +1,28 @@
+$pink: #E82E7C
+@mixin border-config
+    border: 5px solid $pink
+
+.profile
+    height: 2000px
+    position: relative
+    margin-top: 60px
+    img
+        position: relative
+        z-index: 1
+    img, .rotate
+        width: 258px
+        height: 308px
+        margin-left: 5px
+        object-fit: cover
+        border-right: 5px solid $pink
+        border-bottom: 5px solid $pink
+    .rotate
+        width: 304px
+        height: 348px
+        position: absolute
+        top: 0
+        left: -60px
+        transform: rotate(224deg)
+        background-color:transparent
+        @include border-config
+        z-index: -1

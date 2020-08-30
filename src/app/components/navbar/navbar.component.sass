@@ -2,7 +2,7 @@ $pink: #E82E7C
 $light-pink: #EDDCE3
 
 div.form
-    z-index: 100
+    z-index: 1000
     display: flex
     flex-direction: column
     align-items: center
@@ -11,8 +11,12 @@ div.form
    
 
 nav
+    position: sticky
+    z-index: 900
+    top: 0
     box-sizing: border-box
     background-color: black
+    width: 100vw
     height: 16vh
     padding: 20px
     display: flex
