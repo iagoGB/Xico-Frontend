@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { ProfileComponent } from './views/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ModalComponent } from './components/modal/modal.component';
     SusbcribeComponent,
     DashboardComponent,
     NavbarComponent,
-    ModalComponent
+    ModalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

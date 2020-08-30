@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +15,13 @@ export class NavbarComponent implements OnInit {
   divHeight: number;
   divWidth: number;
   form: FormGroup;
+  loginForm: FormGroup;
+  userPicture: string;
   image: File;
 
   constructor(
+    private router: Router,
+    private authService: AuthService,
     private userService: UserService
   ) { }
 
@@ -28,6 +34,16 @@ export class NavbarComponent implements OnInit {
       password: new FormControl(null,Validators.required),
       confirm_password: new FormControl(null,Validators.required)
     })
+
+    this.loginForm = new FormGroup({
+      email: new FormControl(null,[ Validators.required,Validators.email ]),
+      password: new FormControl(null,Validators.required)
+    })
+
+  }
+
+  getFile(){
+    document.getElementById('imagem').click();
   }
 
   onChange($event){
@@ -36,10 +52,37 @@ export class NavbarComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('submit' +  JSON.stringify( this.form.value));
     this.userService.save(this.form.value, this.image).subscribe((resp) => {
-      console.log('Works!');
-    },err => console.log('Doesn\'t work!', err));
+      this.closeDialog('modal_1');
+    },err => {});
+  }
+
+  onLogin(){
+    console.log(this.loginForm.value);
+    this.authService.login(this.loginForm.value).subscribe((resp) => {
+      this.authService.autenthicate(resp);
+      this.getUserPicture();
+      this.closeDialog('modal_2');
+    })
+  }
+
+  logout(){
+    this.authService.logout();
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
+  }
+
+  getUserID(){
+    return this.authService.getData().id;
+  }
+  getUserPicture(){
+    const userID = this.getUserID();
+    console.log(userID);
+    return this.userService.getUser(userID).subscribe((resp: any) => {
+      this.userPicture = resp.image;
+    })
   }
 
   getH(div){
@@ -58,10 +101,13 @@ export class NavbarComponent implements OnInit {
     modal_t.classList.add('show');
   }
   
-  closeDialog() {
-    const modal_t  = document.getElementById('modal_1')
-    modal_t.classList.remove('show')
+  closeDialog(id:string) {
+    const modal_t  = document.getElementById(id);
+    modal_t.classList.remove('show');
     modal_t.classList.add('hidden');
   }
 
+  goToProfile(){
+    this.router.navigate(['portfolio',this.getUserID()]);
+  }  
 }

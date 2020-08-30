@@ -1,6 +1,6 @@
 <nav>
     <a routerlink="/"><img src="/assets/logo.png" alt="" srcset=""></a>
-    <ul>
+    <ul *ngIf="!isLoggedIn() else logged">
         
         <li (click)="openDialog('modal_1')">
             <button class="cadastro"> CADASTRE-SE</button> 
@@ -8,8 +8,20 @@
         <li (click)="openDialog('modal_2')">
             <button class="login">LOGIN</button>
         </li>
-
     </ul>
+    <ng-template #logged>
+        <ul class="logged">
+            <li>
+                <img (click)="logout()" src="/assets/home.png" alt="home">
+            </li>
+            <li>
+                <img src="/assets/more.png" alt="mais">
+            </li>
+            <li >
+                <img (click)="goToProfile()" class="avatar" [src]="userPicture? userPicture : getUserPicture()" alt="sua foto">
+            </li>
+        </ul>
+    </ng-template>
 </nav>
 
 <app-modal 
@@ -19,7 +31,7 @@
     [divHeight]="getH('divForm')"
 >
     <div id="divForm" class="form cadastro" [formGroup]="form">
-        <img src="/assets/camera.png" alt="" srcset="">
+        <img src="/assets/camera.png" alt="" srcset="" (click)="getFile()">
 
         <div class="button-group">
             <input hidden type="file" name="imagem" id="imagem" (change)="onChange($event)"/>
@@ -43,10 +55,10 @@
     [divWidth]="getW('loginForm')" 
     [divHeight]="getH('loginForm')"
 >
-    <div id="loginForm" class="form login" [formGroup]="form">     
-        <input type="text" name="login" id="login" placeholder="Email" />
-        <input type="password" name="password" id="password"  placeholder="Senha" />
-        <input class="entrar" type="button" value="ENTRAR">
+    <div id="loginForm" class="form login" [formGroup]="loginForm">     
+        <input type="text" name="login" id="login" placeholder="Email" formControlName="email" />
+        <input type="password" name="password" id="password"  placeholder="Senha" formControlName="password"/>
+        <input class="entrar" type="button" value="ENTRAR" (click)="onLogin()">
         <input class="esqueceu" type="button" value="Esqueceu sua Senha?">
         <input class="cadastra" type="button" value="Cadastre-se">
     </div> 

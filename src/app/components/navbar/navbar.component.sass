@@ -26,12 +26,27 @@ nav
         padding: 5px
         border-radius: 40px
         border: 2px solid $pink
+    ul.logged img
+        padding: 0px
+        width: 25px
+        height: 25px
+        border-radius: 0px
+        border: none
+    .avatar
+        object-fit: cover
+        padding: 0px ! important
+        width:40px !important
+        height: 40px !important
+        border-radius: 50% !important
+        border: 2px solid $pink !important
 
     ul
         display: flex
         list-style: none
         justify-content: space-between
+        align-items: center
         li
+            cursor: pointer
             margin: 0px 10px
         button
             width: 110px
@@ -56,6 +71,7 @@ nav
     height: 685px 
     img
         width: 100%
+        cursor: pointer
 
     input
         font-family: Quicksand

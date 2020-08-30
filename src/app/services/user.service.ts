@@ -7,10 +7,15 @@ import { User } from '../interfaces/interfaces';
   providedIn: 'root'
 })
 export class UserService {
+  
 
   constructor(
     private http: HttpClient
   ) { }
+
+  getUser(id: number) {
+    return this.http.get(`${ environment.apiUrl }/usuario/${ id }`);
+  }
 
   save( user: User, imagem: File ){
     const http = new HttpHeaders().append('Authorization', 'augenega');
