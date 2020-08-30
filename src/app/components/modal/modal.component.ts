@@ -13,17 +13,12 @@ export class ModalComponent implements OnInit,OnChanges {
   constructor(private el: ElementRef) { }
 
     ngOnChanges(change: SimpleChanges){
-      console.log(change);
       this.divHeight = Number(change.divHeight.currentValue);
       this.divWidth = Number(change.divWidth.currentValue);
 
     }
 
     ngOnInit() {
-      console.log(this.divHeight, this.divWidth);
-      // this.el.nativeElement.addEventListener('click', () => {
-      //   this.close()
-      // })
     }
 
     close() {

@@ -1,10 +1,140 @@
+$pink: #E82E7C
+$light-pink: #EDDCE3
+
 div.form
-    padding: 10px
     z-index: 100
     display: flex
-    width: 400px // Esse with deve vir de fora do componente reutilizável
     flex-direction: column
-    background-color: pink
+    align-items: center
+    justify-content: center
+    background-color: $pink
+   
+
+nav
+    box-sizing: border-box
+    background-color: black
+    height: 16vh
+    padding: 20px
+    display: flex
+    justify-content: space-between
+    border-bottom: 5px solid $pink
+    align-items: center
+
+    img
+        width: 38px
+        height: 38px
+        padding: 5px
+        border-radius: 40px
+        border: 2px solid $pink
+
+    ul
+        display: flex
+        list-style: none
+        justify-content: space-between
+        li
+            margin: 0px 10px
+        button
+            width: 110px
+            height: 30px
+            cursor: pointer
+            font-family: Quicksand
+            font-style: normal
+            font-weight: bold
+            font-size: 12px
+            line-height: 15px
+        .cadastro
+            color: $pink
+            background-color: black
+            border: 2px solid $pink
+        .login
+            border: none
+            background: #ffffff
+            
+.cadastro
+    justify-content: flex-start !important
+    width: 458px
+    height: 685px 
+    img
+        width: 100%
+
     input
-        padding: 5px 10px
-        margin: 10px 20px
+        font-family: Quicksand
+        font-style: normal
+        font-weight: normal
+        background-color: $light-pink
+        box-sizing: border-box
+        margin-bottom: 30px
+        margin: 10px 0px
+        padding: 10px
+        border: none
+        width: 390px
+        height:38px
+    .button-group
+        margin-top:20px
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+    .continuar 
+        height:50px
+        padding: 0px 
+        font-family: Quicksand
+        font-style: normal
+        font-weight: bold
+        font-size: 24px
+        text-align: center
+        margin-top: 20px
+        background-color: black
+        color: $pink
+
+            
+.login 
+    width: 468px
+    height: 468px
+
+    input
+        font-family: Quicksand
+        font-style: normal
+        font-weight: normal
+        background-color: $light-pink
+        box-sizing: border-box
+        margin-bottom: 30px
+        padding: 10px
+        border: none
+        width: 390px
+        height:50px
+    .entrar
+        font-weight: bold
+        background-color: black
+        font-size:24px
+        color: $pink
+    .esqueceu
+        background-color: white
+        font-size: 18px
+        line-height: 22px
+    .cadastra
+        background-color: white
+        width: 229px
+
+        
+
+/*
+
+             input
+        background-color: $light-pink
+        border: none
+        padding: 10px 10px
+        width: 250px
+        margin: 10px
+    .entrar, .esqueceu
+        font-family: Quicksand
+        font-style: normal
+        font-weight: bold
+        font-size: 24px
+        border: none
+        background-color: black
+        color: $pink
+    .esqueceu
+        font-weight: normal
+        color: black
+        background-color: white
+        font-size: 18px */

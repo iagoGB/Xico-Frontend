@@ -42,14 +42,17 @@ export class NavbarComponent implements OnInit {
     },err => console.log('Doesn\'t work!', err));
   }
 
-  openDialog(modal:string, div: string){
+  getH(div){
     const reference = document.getElementById(div);
-    setTimeout(() => {
-      this.divHeight = reference.offsetHeight;
-      this.divWidth = reference.offsetWidth;
-      console.log('Ao abrir dialog' + this.divHeight,this.divWidth)
-    }, 100);
-    
+    return reference.offsetHeight;
+  }
+
+  getW(div){
+    const reference = document.getElementById(div);
+    return reference.offsetWidth;
+  }
+  
+  openDialog(modal:string){
     const modal_t  = document.getElementById(modal)
     modal_t.classList.remove('hidden')
     modal_t.classList.add('show');

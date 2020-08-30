@@ -6,7 +6,7 @@
             class="background-header"
         >  
         <h3>{{ title }}</h3>
-        <div class="button" (click)="close()">X</div>
+        <div class="button" (click)="close() " tabindex="0" role="button"><img src="/assets/close.png" alt=""></div>
         </div>
         <div class="content">
             <ng-content></ng-content>
