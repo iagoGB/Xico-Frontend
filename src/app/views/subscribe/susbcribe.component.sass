@@ -1,42 +1,52 @@
 $border-spacing: 25px
 $border-shape: 3px solid pink
+$pink: #E82E7C
+$light-pink: #EDDCE3
 
-.screen
-    width: 100vw
-    height: 100vh
-    display: flex
-    justify-content: center
-    align-items: center
-.wraper
-    position: relative
-    display: flex
-    background-color: red
-.background-header
-    display: flex
-    bottom: $border-spacing
-    right: $border-spacing
-    position: absolute
-    border: $border-shape
-.background-footer
-    top: $border-spacing
-    left: $border-spacing
-    position: absolute
-    border: $border-shape
+app-modal
+    max-height: 100vh
+    overflow: auto
 div.form
-    padding: 10px
-    z-index: 10000
+    z-index: 1000
     display: flex
-    width: 400px // Esse with deve vir de fora do componente reutilizável
     flex-direction: column
-    background-color: pink
+    align-items: center
+    justify-content: center
+    background-color: $pink
+
+.cadastro
+    width: 400px
+    height: 540px
+    justify-content: flex-start !important
+    img
+        width: 100%
+        cursor: pointer
+
     input
+        font-family: Quicksand
+        font-style: normal
+        font-weight: normal
+        background-color: $light-pink
+        box-sizing: border-box
+        margin-bottom: 5px
+        margin: 5px 10px
         padding: 5px 10px
-        margin: 10px 20px
-h3
-    font-size: 30px
-    margin: 0px
-    margin-left: 20px
-    padding: 0px
-div.button
-    position: absolute
-    right: -50px
+        border: none
+    .button-group
+        width: 90%
+        margin-top:20px
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+    .continuar 
+        height: 45px
+        width: 86%
+        padding: 0px 
+        font-family: Quicksand
+        font-style: normal
+        font-weight: bold
+        font-size: 24px
+        text-align: center
+        margin-top: 20px
+        background-color: black
+        color: $pink

@@ -11,6 +11,8 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,15 +21,18 @@ import { ProfileComponent } from './views/profile/profile.component';
     DashboardComponent,
     NavbarComponent,
     ModalComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule { }

@@ -11,10 +11,15 @@ $pink: #E82E7C
     src: url("https://xicoportfolio.s3.us-east-2.amazonaws.com/fontes/Xolonium-Bold.woff") format("opentype"), url("https://xicoportfolio.s3.us-east-2.amazonaws.com/fontes/Xolonium-Bold.woff") format("truetype")
 
 body
-    background: black
+    background-color: black !important
 .show 
-    position: absolute
     display: block
 // this makes the element hidden/invisible
 .hidden 
     display: none
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap'
+
+.teste-class .modal-content
+    background-color: transparent !important
+    border: none !important

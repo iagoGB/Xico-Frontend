@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-navbar',
@@ -22,8 +23,16 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private ngModal: NgbModal
   ) { }
+
+  openModal(content){
+    const modalRef = this.ngModal.open(content, { size: 'md', centered: true, windowClass:'teste-class'});
+    this.divWidth = this.getW('divFormT');
+    this.divHeight = this.getH('divFormT');
+
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup ({

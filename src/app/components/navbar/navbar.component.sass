@@ -11,12 +11,12 @@ div.form
    
 
 nav
-    position: sticky
+    //position: sticky
     z-index: 900
     top: 0
     box-sizing: border-box
     background-color: black
-    width: 100vw
+    width: 100%
     height: 16vh
     padding: 20px
     display: flex
@@ -69,42 +69,7 @@ nav
             border: none
             background: #ffffff
             
-.cadastro
-    justify-content: flex-start !important
-    width: 458px
-    height: 685px 
-    img
-        width: 100%
-        cursor: pointer
 
-    input
-        font-family: Quicksand
-        font-style: normal
-        font-weight: normal
-        background-color: $light-pink
-        box-sizing: border-box
-        margin-bottom: 30px
-        margin: 10px 0px
-        padding: 10px
-        border: none
-        width: 390px
-        height:38px
-    .button-group
-        margin-top:20px
-        display: flex
-        flex-direction: column
-        justify-content: space-between
-    .continuar 
-        height:50px
-        padding: 0px 
-        font-family: Quicksand
-        font-style: normal
-        font-weight: bold
-        font-size: 24px
-        text-align: center
-        margin-top: 20px
-        background-color: black
-        color: $pink
 
             
 .login 
@@ -158,3 +123,28 @@ nav
         color: black
         background-color: white
         font-size: 18px */
+
+.modal-backdrop
+    background-color: black !important
+
+.teste-1
+    background-color: yellow
+    position: absolute
+    top: -20px
+    left: -20px
+    z-index:-1
+.teste-2
+    position: relative
+    display: flex
+    justify-content: center
+    z-index:100
+    padding: 5px
+.teste-3
+    background-color: pink
+    position: absolute
+    z-index:-1
+    right: -20px
+    bottom: -20px
+.teste-class
+    background-color: transparent !important
+    border: none !important

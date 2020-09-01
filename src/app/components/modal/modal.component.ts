@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, Input, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal',
@@ -7,22 +8,24 @@ import { Component, OnInit, ElementRef, Input, AfterViewInit, OnChanges, SimpleC
 })
 export class ModalComponent implements OnInit,OnChanges {
   @Input() title: string = 'CADASTRO';
-  @Input() divHeight: number;
-  @Input() divWidth: number;
+  @Input() divHeight: number = 480
+  @Input() divWidth: number = 480
 
-  constructor(private el: ElementRef) { }
+  constructor(
+    private el: ElementRef,
+    private router: Router
+    ) { }
 
     ngOnChanges(change: SimpleChanges){
       this.divHeight = Number(change.divHeight.currentValue);
       this.divWidth = Number(change.divWidth.currentValue);
-
     }
 
     ngOnInit() {
+      console.log("iniciou a modal")
     }
 
     close() {
-      this.el.nativeElement.classList.remove('show')
-      this.el.nativeElement.classList.add('hidden')
+      this.router.navigate(['/']);
     }
 }

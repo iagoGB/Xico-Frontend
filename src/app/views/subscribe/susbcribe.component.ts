@@ -45,4 +45,14 @@ export class SusbcribeComponent implements OnInit {
     },err => console.log('Doesn\'t work!', err));
   }
 
+  getH(div){
+    const reference = document.getElementById(div);
+    return reference.offsetHeight;
+  }
+
+  getW(div){
+    const reference = document.getElementById(div);
+    return reference.offsetWidth;
+  }
+
 }
