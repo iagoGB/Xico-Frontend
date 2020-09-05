@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-susbcribe',
@@ -8,20 +9,15 @@ import {UserService } from 'src/app/services/user.service';
   styleUrls: ['./susbcribe.component.sass']
 })
 export class SusbcribeComponent implements OnInit {
-  @Input() title: string = 'CADASTRO';
-  divHeight: number;
-  divWidth: number;
   form: FormGroup;
   image: File;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
-  ngOnInit(): void {
-    const reference = document.getElementById('divForm');
-    this.divHeight = reference.offsetHeight;
-    this.divWidth = reference.offsetWidth;
+  ngOnInit() {
 
     this.form = new FormGroup ({
       name: new FormControl(null,Validators.required),
@@ -33,26 +29,28 @@ export class SusbcribeComponent implements OnInit {
     })
   }
 
+  getFile(){
+    document.getElementById('imagem').click();
+  }
+
   onChange($event){
     this.image = $event.target.files[0];
     console.log('this.image: '+ this.image);
+    const reader = new FileReader();
+    reader.readAsDataURL(this.image);
+    const imgTag =  document.getElementsByTagName('img')[1];
+    reader.onload = (_event) => { 
+      imgTag.style.width = '86%'
+      imgTag.style.padding = '5px';
+      imgTag.src = reader.result.toString();
+    }
   }
 
   onSubmit(){
     console.log('submit' +  JSON.stringify( this.form.value));
     this.userService.save(this.form.value, this.image).subscribe((resp) => {
-      console.log('Works!');
+      this.router.navigate(['/']);
     },err => console.log('Doesn\'t work!', err));
-  }
-
-  getH(div){
-    const reference = document.getElementById(div);
-    return reference.offsetHeight;
-  }
-
-  getW(div){
-    const reference = document.getElementById(div);
-    return reference.offsetWidth;
   }
 
 }

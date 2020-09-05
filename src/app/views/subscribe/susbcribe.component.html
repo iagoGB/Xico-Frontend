@@ -1,23 +1,21 @@
-<app-modal 
-    id="modal_1" 
-    class="show"
-    [divWidth]="getW('divForm')" 
-    [divHeight]="getH('divForm')"
->
-    <div id="divForm" class="form cadastro" [formGroup]="form">
-        <img src="/assets/camera.png" alt="" srcset="" > <!--(click)="getFile()" -->
-
-        <div class="button-group">
-            <input hidden type="file" name="imagem" id="imagem" (change)="onChange($event)"/>
-            <input type="text" name="nome" id="nome"  placeholder="nome" formControlName="name"/>
-            <input type="text" name="sobrenome" id="sobrenome" placeholder="sobrenome" formControlName="lastName" />
-            <input type="email" name="email" id="email" placeholder="email" formControlName="email">
-            <input type="text" name="ano_ingresso" id="ano_ingresso" placeholder="2020.1" formControlName="entryDate"/>
-            <input type="password" name="senha" id="senha" placeholder="senha" formControlName="password"/>
-            <input type="password" name="confirma_senha" id="confirma_senha" placeholder="confirme a senha"  formControlName="confirm_password"/>
+<div class="sub">
+    <app-custom-background>
+        <div id="divForm" class="form cadastro" [formGroup]="form">
+            <img src="/assets/camera.png" (click)="getFile()" > <!--(click)="getFile()" -->
+    
+            <div class="button-group">
+                <input hidden type="file" accept="Image/*" name="imagem" id="imagem" (change)="onChange($event)"/>
+                <input type="text" name="nome" id="nome"  placeholder="Nome" formControlName="name"/>
+                <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" formControlName="lastName" />
+                <input type="email" name="email" id="email" placeholder="Email" formControlName="email">
+                <input type="email" name="email" id="email" placeholder="Confirmar Email" formControlName="email">
+                <input type="text" name="ano_ingresso" id="ano_ingresso" placeholder="2020.1" formControlName="entryDate"/>
+                <input type="password" name="senha" id="senha" placeholder="Senha" formControlName="password"/>
+                <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Confirme a senha"  formControlName="confirm_password"/>
+                
+            </div>
+            <input class="continuar" type="button" value="CONTINUAR" (click)="onSubmit()"/>
             
-        </div>
-        <input class="continuar" type="button" value="CONTINUAR" (click)="onSubmit()"/>
-        
-    </div> 
-</app-modal>
+        </div> 
+    </app-custom-background>
+</div>

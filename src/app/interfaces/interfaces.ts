@@ -7,6 +7,6 @@ export interface User {
     password: string,
     description: string,
     entryDate: string,
-    tools: Array<string>,
+    tools: Array<any>,
     projects: Array<string>
 }

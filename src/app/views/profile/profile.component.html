@@ -1,14 +1,56 @@
 <app-navbar></app-navbar>
-<div class="profile">
-    <img [src]="user.image" alt="">
-    <div class="rotate"></div>
-    <!-- {{ user.name }} 
-    {{ user.description }}
-    {{ user.entryDate }} -->
-    <div class="tools">
+<div  class="profile">
+    <div class="image-header">
+        <div>
+            <img class="user" *ngIf="user.image" [src]="user.image" alt="">
+            <div class="rotate"></div>
+        </div>
+        
+        <div class="title-tools">
+            <div class="title">
+                <div class="h-line">
 
+                </div>
+                <h3>
+                    Agathar Ned
+                </h3>
+            </div>
+            <ul>
+                <li>
+                    <img class="li-circle" src="/assets/list-style.svg" style="padding-bottom:5px; margin-left: 5px;" alt="">
+                    <span>{{ user.name }} {{ user.lastName }}</span>
+                </li>
+                <li>
+                    <img class="li-circle" style="padding-bottom:5px; margin-left: 5px;"src="/assets/list-style.svg" alt="">
+                    <span>{{ user.entryDate }}</span>
+                </li>
+            </ul>
+            <div class="tools-retangule">
+                <div *ngIf="user.tools" style="color:white;width: 100%;height:100%;" class="d-flex justify-content-center">Nenhuma ferramenta  selecionada</div>
+                <img src="/assets/circle-box.png" class="circle-box" width="80" height="80" alt="ferramentas" srcset="">
+                <img *ngFor="let tool of user.tools" class="tool-image" width="60" height="60"  [tooltip]="tool.name" [src]="tool.url" />
+            </div>
+        </div>
     </div>
+    
+    <div class="description">
+        <div class="social">
+            <a href="http://" target="_blank"><img src="/assets/twitter.svg" width="26" height="26" alt=""></a>
+            <a href="http://" target="_blank"><img src="/assets/instagram.svg" width="26" height="26" alt=""></a>
+            <a href="http://" target="_blank"><img src="/assets/email.svg" width="26" height="26" alt=""></a>
+        </div>
+        <textarea   name="description" id="descriptions" cols="20" rows="10"  readonly>{{ user.description?  user.description: 'Nada inserido aqui...' }}</textarea>
+        
+    </div>
+    
 </div>
-<div class="projects">
 
+<div class="lines">
+    <hr class="first">
+    <hr class="second">  
+</div>
+
+<div class="projects">
+    <app-project-list [list]="user.projects">  
+    </app-project-list>
 </div>

@@ -2,11 +2,14 @@ $border-spacing: 25px
 $border-shape: 3px solid pink
 $pink: #E82E7C
 $light-pink: #EDDCE3
+.sub
+    display: flex
+    justify-content: center
+    background: black
+    padding: 60px
 
-app-modal
-    max-height: 100vh
-    overflow: auto
 div.form
+    position: relative
     z-index: 1000
     display: flex
     flex-direction: column
@@ -15,13 +18,13 @@ div.form
     background-color: $pink
 
 .cadastro
-    width: 400px
-    height: 540px
+    width: 458px
+    height: 685px
     justify-content: flex-start !important
     img
         width: 100%
+        height:180px
         cursor: pointer
-
     input
         font-family: Quicksand
         font-style: normal
@@ -29,7 +32,7 @@ div.form
         background-color: $light-pink
         box-sizing: border-box
         margin-bottom: 5px
-        margin: 5px 10px
+        margin: 8px 10px
         padding: 5px 10px
         border: none
     .button-group
@@ -39,7 +42,7 @@ div.form
         flex-direction: column
         justify-content: space-between
     .continuar 
-        height: 45px
+        height: 50px
         width: 86%
         padding: 0px 
         font-family: Quicksand
@@ -47,6 +50,6 @@ div.form
         font-weight: bold
         font-size: 24px
         text-align: center
-        margin-top: 20px
+        margin-top: 35px
         background-color: black
         color: $pink

@@ -1,0 +1,46 @@
+<div class="p-5">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="d-flex justify-content-center new-project">
+                <img class="" src="/assets/new-project.svg" alt="Card image cap">
+            </div>
+        </div>
+        <div *ngFor="let project of list" class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card text-right">
+                <img class="card-img-top" [src]="project.files[0]" alt="Card image cap">
+                <div class="card-body">
+                    <img src="/assets/like.svg" alt="" srcset=""> <span class="first">{{ project.likes.length }}</span>
+                    <img src="/assets/view.svg" alt="" srcset=""> <span>{{ project.views.length}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card text-right">
+                <img class="card-img-top" src="/assets/new-project.svg" alt="Card image cap">
+                <div class="card-body">
+                    <img src="/assets/like.svg" alt="" srcset=""> <span class="first">1</span>
+                    <img src="/assets/view.svg" alt="" srcset=""> <span>5</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card text-right">
+                <img class="card-img-top" src="/assets/abc.png" alt="Card image cap">
+                <div class="card-body">
+                    <img src="/assets/like.svg" alt="" srcset=""> <span class="first">1</span>
+                    <img src="/assets/view.svg" alt="" srcset=""> <span>5</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3  col-md-4 col-sm-6 mt-2">
+            <div class="card text-right">
+                <img class="card-img-top" src="/assets/abc.png" alt="Card image cap">
+                <div class="card-body">
+                    <img src="/assets/like.svg" alt="" srcset=""> <span class="first">1</span>
+                    <img src="/assets/view.svg" alt="" srcset=""> <span>5</span>
+                </div>
+            </div>
+        </div> -->
+    </div>
+   
+</div>

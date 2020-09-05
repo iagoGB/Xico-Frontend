@@ -11,8 +11,11 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProfileComponent } from './views/profile/profile.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './views/login/login.component';
+import { CustomBackgroundComponent } from './components/custom-background/custom-background.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,17 @@ import { LoginComponent } from './views/login/login.component';
     NavbarComponent,
     ModalComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    CustomBackgroundComponent,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    BrowserAnimationsModule,
+    TooltipModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
