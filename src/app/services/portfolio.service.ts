@@ -23,4 +23,8 @@ export class PortfolioService {
     return this.httpService.post(`${ environment.apiUrl }/portfolio`,formData);
     
   }
+
+  findByID(id:number) {
+    return this.httpService.get(`${ environment.apiUrl }/portfolio/${ id }`);
+  }
 }

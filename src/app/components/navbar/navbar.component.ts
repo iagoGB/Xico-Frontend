@@ -40,6 +40,6 @@ export class NavbarComponent implements OnInit {
   }
 
   goToProfile(){
-    this.router.navigate(['portfolio',this.getUserID()]);
+    this.router.navigate(['perfil',this.getUserID()]);
   }  
 }

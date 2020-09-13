@@ -14,10 +14,15 @@ export class ProjectListComponent implements OnInit {
   ) { }
 
   ngOnInit()  {
+    console.log(this.list);
   }
 
-  createProject(){
-    this.router.navigate(['projeto']);
+  createProject() {
+    this.router.navigate(['novo-projeto']);
+  }
+
+  viewProject(id: number) {
+    this.router.navigate([ 'portfolio',id ]);
   }
 
 }

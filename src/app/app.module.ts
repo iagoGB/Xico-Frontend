@@ -19,6 +19,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { DragulaModule } from 'ng2-dragula';
 import { ProjectComponent } from './views/project/project.component';
+import { ProjectDetailsComponent } from './views/project-details/project-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ProjectComponent } from './views/project/project.component';
     LoginComponent,
     CustomBackgroundComponent,
     ProjectListComponent,
-    ProjectComponent
+    ProjectComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,39 @@
+<div class="row  justify-content-between mt-5 ml-5 mr-5">
+    <div>
+        <h3>{{ portfolio.title }}</h3>
+    </div>
+    <div class="button"  tabindex="0" role="button"><img src="/assets/close.png" alt=""></div>
+</div>
+
+<div class="row ml-5 mr-5 mt-2 flex-column broken-border">
+    <div class="no-border" style="width: 50%; height: 8px; background-color: black; margin-top: -5px"></div>
+    <div class="user d-flex">
+        <img style="object-fit: cover;" [src]="user.image"  width="35" height="50" alt="">
+        <div class="info">
+            <h5>{{ user.nickname }}</h5>
+            <ul class="d-flex">
+                <li class="mr-2" *ngFor=" let tag of portfolio.tags">{{ tag }}</li>
+            </ul>
+            <ul class="d-flex">
+                <li class="mr-2" *ngFor=" let tool of user.tools"><img [src]="tool.url" width="20" height="20" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <div class="description p-2 pr-5">
+        {{ portfolio.description }}
+        <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, nostrum consequatur rem provident voluptatibus similique cumque inventore repellat sint eaque quam voluptas impedit enim, quisquam vel quos nihil. Temporibus, ut.
+        Earum, nesciunt totam! Veritatis quae aut, nulla officia error, quidem esse corrupti animi reiciendis rem fugiat voluptas, maxime numquam pariatur exercitationem. Sequi, harum ab non laboriosam aspernatur minima exercitationem ipsam!
+        Fugiat repellendus beatae, consequuntur similique quo culpa, voluptas dolor minima recusandae debitis temporibus repudiandae fugit nam deleniti iusto omnis nostrum deserunt, quas iste. Explicabo saepe enim id temporibus voluptatem laborum.
+        In dignissimos praesentium quo at, id nostrum, reprehenderit recusandae adipisci delectus perferendis cupiditate aliquam quas eius fugiat nisi hic earum minus assumenda sit totam a beatae officia? Reprehenderit, dignissimos modi?
+        Inventore eius consectetur fuga natus dicta nostrum cumque ad accusantium. Nostrum ex facere consequuntur excepturi iure, eligendi omnis eius inventore sit quidem necessitatibus possimus aut. Et corrupti nihil a odit! -->
+    </div>
+   
+</div>
+
+<div class="row carousel-background mt-5">
+
+</div>
+
+<!-- {{ portfolio.tags }}
+{{ portfolio.userID }}
+{{ portfolio.files }} -->

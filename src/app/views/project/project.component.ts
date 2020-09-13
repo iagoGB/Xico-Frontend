@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,6 +15,7 @@ export class ProjectComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private location: Location,
     private portfolioService: PortfolioService
   ) { }
 
@@ -37,7 +39,6 @@ export class ProjectComponent implements OnInit {
   }
 
   loadImages($event) {
-    console.log("Entrou em load images")
     if ($event.target.files.length > 0) {
       const files = $event.target.files as FileList;
       for (let index = 0; index < files.length; index++) {
@@ -45,11 +46,9 @@ export class ProjectComponent implements OnInit {
         const reader = new FileReader();
         reader.readAsDataURL(files[index]);
         reader.onload = (event) => {
-          console.log('terminou de ler');
           this.imageList.push({ file: files[index], src: reader.result.toString() })
         }
       }
-      console.log(this.imageList);
     }
   }
 
@@ -60,10 +59,11 @@ export class ProjectComponent implements OnInit {
 
   createProject(){
     this.portfolioService.save(this.imageList,this.projetoForm.value).subscribe(
-      (success) =>{
+      (success) => {
         console.log('Criou!'+ success);
+        this.location.back();
       },
-      (err) =>{
+      (err) => {
         console.log('Deu erro!' + err);
       }
     )

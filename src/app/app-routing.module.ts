@@ -5,15 +5,17 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { LoginComponent } from './views/login/login.component';
 import { ProjectComponent } from './views/project/project.component';
+import { ProjectDetailsComponent } from './views/project-details/project-details.component';
 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path:'inscreva-se', component: SusbcribeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'portfolio/:id', component: ProfileComponent },
-  { path: 'projeto', component: ProjectComponent },
-  { path: 'projeto/:id', component: ProjectComponent }
+  { path: 'perfil/:id', component: ProfileComponent },
+  { path: 'novo-projeto', component: ProjectComponent },
+  { path: 'editar-projeto/:id', component: ProjectComponent },
+  { path: 'portfolio/:id', component: ProjectDetailsComponent }
   
 ];
 

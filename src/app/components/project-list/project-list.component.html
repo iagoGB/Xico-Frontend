@@ -5,7 +5,7 @@
                 <img class="" src="/assets/new-project.svg" alt="Card image cap">
             </div>
         </div>
-        <div *ngFor="let project of list" class="col-lg-3 col-md-4 col-sm-6 mt-2">
+        <div *ngFor="let project of list" class="col-lg-3 col-md-4 col-sm-6 mt-2" (click)="viewProject(project.id)">
             <div class="card text-right">
                 <img class="card-img-top" [src]="project.files[0]" alt="Card image cap">
                 <div class="card-body">

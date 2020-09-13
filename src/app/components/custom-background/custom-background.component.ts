@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,12 +10,14 @@ import { Router } from '@angular/router';
 export class CustomBackgroundComponent implements OnInit {
   @Input() title: string = 'CADASTRO';
 
-  constructor(private router: Router) { }
+  constructor(
+    private location: Location
+  ) { }
 
   ngOnInit() {
   }
 
   close(){
-    this.router.navigate(['/']);
+    this.location.back();
   }
 }
