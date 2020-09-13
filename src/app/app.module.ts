@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { SusbcribeComponent } from './views/subscribe/susbcribe.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ModalComponent } from './components/modal/modal.component';
@@ -16,6 +16,9 @@ import { CustomBackgroundComponent } from './components/custom-background/custom
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SortableModule } from 'ngx-bootstrap/sortable';
+import { DragulaModule } from 'ng2-dragula';
+import { ProjectComponent } from './views/project/project.component';
 
 @NgModule({
   declarations: [
@@ -27,15 +30,19 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     ProfileComponent,
     LoginComponent,
     CustomBackgroundComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SortableModule.forRoot(),
+    DragulaModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

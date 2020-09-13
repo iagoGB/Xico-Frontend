@@ -7,9 +7,10 @@
                 <input hidden type="file" accept="Image/*" name="imagem" id="imagem" (change)="onChange($event)"/>
                 <input type="text" name="nome" id="nome"  placeholder="Nome" formControlName="name"/>
                 <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" formControlName="lastName" />
+                <input type="text" name="nickname" id="nickname" placeholder="Nickname" formControlName="nickname" maxlength="11" />
                 <input type="email" name="email" id="email" placeholder="Email" formControlName="email">
                 <input type="email" name="email" id="email" placeholder="Confirmar Email" formControlName="email">
-                <input type="text" name="ano_ingresso" id="ano_ingresso" placeholder="2020.1" formControlName="entryDate"/>
+                <input type="text" name="ano_ingresso" id="ano_ingresso" placeholder="2020.1" formControlName="entryDate" maxlength="6"/>
                 <input type="password" name="senha" id="senha" placeholder="Senha" formControlName="password"/>
                 <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Confirme a senha"  formControlName="confirm_password"/>
                 

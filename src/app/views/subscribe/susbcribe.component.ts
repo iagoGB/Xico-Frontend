@@ -22,6 +22,7 @@ export class SusbcribeComponent implements OnInit {
     this.form = new FormGroup ({
       name: new FormControl(null,Validators.required),
       lastName: new FormControl(null,Validators.required),
+      nickname: new FormControl(null,Validators.required),
       email: new FormControl(null,[ Validators.required,Validators.email ]),
       entryDate: new FormControl(null,Validators.required),
       password: new FormControl(null,Validators.required),
@@ -35,7 +36,6 @@ export class SusbcribeComponent implements OnInit {
 
   onChange($event){
     this.image = $event.target.files[0];
-    console.log('this.image: '+ this.image);
     const reader = new FileReader();
     reader.readAsDataURL(this.image);
     const imgTag =  document.getElementsByTagName('img')[1];

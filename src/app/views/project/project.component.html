@@ -1,0 +1,71 @@
+<div class="wraper">
+    <app-custom-background title="NOVO PROJETO">
+
+        <div class="projeto row justify-content-center">
+            <div class="col-5 files mt-3 mb-3">
+                <div class="row pt-2 pb-2 mt-2 mr-2">
+                    <input type="file" name="images" id="images" (change)="loadImages($event)" accept="image/*" multiple
+                        hidden />
+                    <div class="col-4 mb-2">
+                        <div class="card" (click)="getImages()">
+                            <img class="card-img-top" src="/assets/new-project.svg" alt="">
+                        </div>
+                    </div>
+                    <div 
+                        dragula="IMAGELIST" 
+                        [dragulaModel]="imageList" 
+                        (dragulaModelChange)="imageList = $event" 
+                        class="col-4"
+                        *ngFor="let image of imageList; index as i"
+                    >
+                        <div class="card mb-2">
+                            <img class="card-img-top" [src]="image.src" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                   <p>{{ imageList }}</p> 
+                </div>
+            </div>
+
+            <div class="fields col-6 pt-2 mt-1  ml-4" [formGroup]="projetoForm">
+
+                <div class="form-row">
+                    <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Titulo"
+                        formControlName="title" />
+                </div>
+
+                <div class="form-row">
+                    <textarea class="form-control" style="resize: none;" name="description" id="description" cols="30"
+                        rows="10" placeholder="Descrição" formControlName="description"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <input class="form-control" type="text" name="tags" id="tags" placeholder="Tags"
+                        formControlName="tags" />
+                </div>
+
+                <div class="form-row">
+                    <select class="form-control custom-select" type="select" name="tools" id="tools"
+                        placeholder="Ferramentas" formControlName="tools" multiple>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+
+                <div class="form-row last d-flex- justify-content-end">
+                    <input type="text" class="form-control invisible mt-3" />
+                    <!-- Apenas para ocupar espaço do layout -->
+                    <input class="btn cadastra" type="button" value="PUBLICAR" (click)="createProject()">
+                </div>
+            </div>
+        </div>
+    </app-custom-background>
+</div>
