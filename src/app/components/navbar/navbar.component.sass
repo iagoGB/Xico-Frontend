@@ -8,15 +8,23 @@ nav
     box-sizing: border-box
     background-color: black
     width: 100%
-    height: 16vh
+    //height: 16vh
     margin-bottom: 16vh
     padding: 20px
     display: flex
     justify-content: space-between
     border-bottom: 5px solid $pink
     align-items: center
-
-    img
+    img.logo
+        box-sizing: border-box
+        
+    div.logo
+        margin: 0px
+        box-sizing: boder-box
+        padding: 12px
+        border: 3px solid $pink
+        border-radius: 60px
+    img.lobo
         width: 38px
         height: 38px
         padding: 5px
@@ -40,6 +48,7 @@ nav
         display: flex
         list-style: none
         justify-content: space-between
+        margin-bottom: 0px
         align-items: center
         li
             cursor: pointer

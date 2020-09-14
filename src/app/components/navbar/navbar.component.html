@@ -1,5 +1,10 @@
 <nav class="navbar fixed-top">
-    <a [routerLink]="['/']"><img src="/assets/logo.png" alt="" srcset=""></a>
+        <!-- <img class="lobo" src="/assets/logo.svg" alt="" srcset=""> -->
+        <div [routerLink]="['/']" class="logo">
+            <img class="logo"  src="/assets/logo.svg"  width="65" height="65" alt="" srcset="">
+
+        </div>
+   
     <ul *ngIf="!isLoggedIn() else logged">
         
         <li [routerLink]="['/inscreva-se']">
@@ -12,10 +17,10 @@
     <ng-template #logged>
         <ul class="logged">
             <li>
-                <img (click)="logout()" src="/assets/home.png" alt="home">
+                <img [routerLink]="['/']" src="/assets/home.png" alt="home">
             </li>
             <li>
-                <img src="/assets/more.png" alt="mais">
+                <img  src="/assets/more.png" alt="mais">
             </li>
             <li >
                 <img (click)="goToProfile()" class="avatar" [src]="userPicture" onerror="this.src='/assets/profile.png'" alt="sua foto">
