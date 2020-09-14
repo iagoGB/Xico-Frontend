@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,8 +15,10 @@ export class ProjectDetailsComponent implements OnInit {
   itemsPerSlide: number = null;
   singleSlideOffset = true;
   noWrap = false;
+  
   constructor(
     private route: ActivatedRoute,
+    private location: Location,
     private userService: UserService,
     private portfolioService: PortfolioService
     
@@ -62,6 +65,10 @@ export class ProjectDetailsComponent implements OnInit {
         console.log('Ocorreu um erro ao trazer as informações do usuário');
       }
     )
+  }
+
+  close(){
+    this.location.back();
   }
 
 }

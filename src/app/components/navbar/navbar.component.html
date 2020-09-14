@@ -20,7 +20,7 @@
                 <img [routerLink]="['/']" src="/assets/home.png" alt="home">
             </li>
             <li>
-                <img  src="/assets/more.png" alt="mais">
+                <img [routerLink]="['/novo-projeto']" src="/assets/more.png" alt="mais">
             </li>
             <li >
                 <img (click)="goToProfile()" class="avatar" [src]="userPicture" onerror="this.src='/assets/profile.png'" alt="sua foto">

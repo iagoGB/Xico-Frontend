@@ -2,7 +2,7 @@
     <div>
         <h3>{{ portfolio.title }}</h3>
     </div>
-    <div class="button"  tabindex="0" role="button"><img src="/assets/close.png" alt=""></div>
+    <div class="button" (click)="close()" tabindex="0" role="button"><img src="/assets/close.png" alt=""></div>
 </div>
 
 <div class="row ml-5 mr-5 mt-2 flex-column broken-border">
@@ -10,7 +10,7 @@
     <div class="user d-flex">
         <img style="object-fit: cover;" [src]="user.image"  width="35" height="50" alt="">
         <div class="info">
-            <h5>{{ user.nickname }}</h5>
+            <h5 [routerLink]="['/perfil',this.portfolio.userID ]">{{ user.nickname }}</h5>
             <ul class="d-flex">
                 <li class="mr-2" *ngFor=" let tag of portfolio.tags">{{ tag }}</li>
             </ul>
