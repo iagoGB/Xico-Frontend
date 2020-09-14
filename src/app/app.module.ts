@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { DragulaModule } from 'ng2-dragula';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProjectComponent } from './views/project/project.component';
 import { ProjectDetailsComponent } from './views/project-details/project-details.component';
 
@@ -44,6 +45,7 @@ import { ProjectDetailsComponent } from './views/project-details/project-details
     BrowserAnimationsModule,
     TooltipModule.forRoot(),
     SortableModule.forRoot(),
+    CarouselModule.forRoot(),
     DragulaModule.forRoot()
   ],
   providers: [],

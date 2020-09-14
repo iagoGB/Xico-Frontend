@@ -51,6 +51,6 @@
 </div>
 
 <div class="projects">
-    <app-project-list [list]="user.projects">  
+    <app-project-list [list]="user.projects" [create]="isOwner()">  
     </app-project-list>
 </div>

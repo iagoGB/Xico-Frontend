@@ -11,6 +11,9 @@ import { UserService } from 'src/app/services/user.service';
 export class ProjectDetailsComponent implements OnInit {
   portfolio: any;
   user: any;
+  itemsPerSlide: number = null;
+  singleSlideOffset = true;
+  noWrap = false;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -29,7 +32,18 @@ export class ProjectDetailsComponent implements OnInit {
     this.portfolioService.findByID(id).subscribe(
       (resp) => {
         this.portfolio = resp;
-        this.portfolio.tags = ['#fofoca', '#desenho', '#design', '#luluzinha', '#animacao'];
+        const tamanhoDoArray = this.portfolio.files.length;
+        if (tamanhoDoArray === 1){
+          this.itemsPerSlide = 1;
+        } else if (tamanhoDoArray === 2){
+          this.itemsPerSlide = 2;
+        } else if (tamanhoDoArray === 3){
+          this.itemsPerSlide = 3;
+        } else if (tamanhoDoArray === 4){
+          this.itemsPerSlide = 4;
+        } else {
+          this.itemsPerSlide = 5;
+        }
         console.log(this.portfolio);
         this.getUserDetails(this.portfolio.userID);
       },
@@ -43,11 +57,6 @@ export class ProjectDetailsComponent implements OnInit {
     this.userService.getUser(userID).subscribe(
       (resp) => {
         this.user = resp;
-        this.user.tools = [
-        { name:'Figma',url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg'},
-        { name:'Reaper',url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/reaper.svg'}
-      ]
-        console.log(this.user)
       },
       (err) =>{
         console.log('Ocorreu um erro ao trazer as informações do usuário');

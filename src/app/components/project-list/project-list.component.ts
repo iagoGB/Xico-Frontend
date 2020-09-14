@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ProjectListComponent implements OnInit {
   @Input() list: Array<any>;
+  @Input() create: boolean = false
 
   constructor(
     private router: Router

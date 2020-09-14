@@ -15,23 +15,36 @@
                 <li class="mr-2" *ngFor=" let tag of portfolio.tags">{{ tag }}</li>
             </ul>
             <ul class="d-flex">
-                <li class="mr-2" *ngFor=" let tool of user.tools"><img [src]="tool.url" width="20" height="20" alt=""></li>
+                <li class="mr-2" *ngFor=" let tool of portfolio.tools"><img [src]="tool" width="20" height="20" alt=""></li>
             </ul>
         </div>
     </div>
     <div class="description p-2 pr-5">
         {{ portfolio.description }}
-        <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, nostrum consequatur rem provident voluptatibus similique cumque inventore repellat sint eaque quam voluptas impedit enim, quisquam vel quos nihil. Temporibus, ut.
-        Earum, nesciunt totam! Veritatis quae aut, nulla officia error, quidem esse corrupti animi reiciendis rem fugiat voluptas, maxime numquam pariatur exercitationem. Sequi, harum ab non laboriosam aspernatur minima exercitationem ipsam!
-        Fugiat repellendus beatae, consequuntur similique quo culpa, voluptas dolor minima recusandae debitis temporibus repudiandae fugit nam deleniti iusto omnis nostrum deserunt, quas iste. Explicabo saepe enim id temporibus voluptatem laborum.
-        In dignissimos praesentium quo at, id nostrum, reprehenderit recusandae adipisci delectus perferendis cupiditate aliquam quas eius fugiat nisi hic earum minus assumenda sit totam a beatae officia? Reprehenderit, dignissimos modi?
-        Inventore eius consectetur fuga natus dicta nostrum cumque ad accusantium. Nostrum ex facere consequuntur excepturi iure, eligendi omnis eius inventore sit quidem necessitatibus possimus aut. Et corrupti nihil a odit! -->
     </div>
    
 </div>
 
-<div class="row carousel-background mt-5">
+<div class="row carousel-background mt-5 d-flex justify-content-center">
+    <carousel  class="pl-3 pr-3" [itemsPerSlide]="itemsPerSlide"
+        [singleSlideOffset]="singleSlideOffset"
+        [isAnimated]="true"
+        [interval]="false"
+        [noWrap]="noWrap"
+    >
+  <slide *ngFor="let slide of portfolio.files; let index=index">
+    <img class="image-carousel m-3 " [ngClass]="(index % 2 == 0)? 'mt-4': 'mt-5'" [src]="slide" alt="image slide" width="259" height="288" >
+  
+    <!-- <div class="carousel-caption">
+      <h4>Slide {{index}}</h4>
+    </div> -->
+  </slide>
+</carousel>
+<div class="w-100 d-flex justify-content-center">
+    <div  class="w-75 bottom-border" >
 
+    </div>
+</div>
 </div>
 
 <!-- {{ portfolio.tags }}

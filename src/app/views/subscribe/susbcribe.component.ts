@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-susbcribe',
   templateUrl: './susbcribe.component.html',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class SusbcribeComponent implements OnInit {
   form: FormGroup;
-  image: File;
+  image: File = null;
+  erromsg: string = null;
 
   constructor(
     private userService: UserService,
@@ -47,7 +49,10 @@ export class SusbcribeComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('submit' +  JSON.stringify( this.form.value));
+    if (!this.image) {
+      this.erromsg = "Por favor selecione uma imagem";
+      return;
+    }
     this.userService.save(this.form.value, this.image).subscribe((resp) => {
       this.router.navigate(['/']);
     },err => console.log('Doesn\'t work!', err));

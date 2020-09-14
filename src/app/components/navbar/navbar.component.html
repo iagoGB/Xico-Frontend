@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top">
-    <a routerlink="/"><img src="/assets/logo.png" alt="" srcset=""></a>
+    <a [routerLink]="['/']"><img src="/assets/logo.png" alt="" srcset=""></a>
     <ul *ngIf="!isLoggedIn() else logged">
         
         <li [routerLink]="['/inscreva-se']">
@@ -18,7 +18,7 @@
                 <img src="/assets/more.png" alt="mais">
             </li>
             <li >
-                <img (click)="goToProfile()" class="avatar" [src]="userPicture? userPicture : getUserPicture()" alt="sua foto">
+                <img (click)="goToProfile()" class="avatar" [src]="userPicture" onerror="this.src='/assets/profile.png'" alt="sua foto">
             </li>
         </ul>
     </ng-template>

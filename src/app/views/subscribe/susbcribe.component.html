@@ -2,7 +2,9 @@
     <app-custom-background>
         <div id="divForm" class="form cadastro" [formGroup]="form">
             <img src="/assets/camera.png" (click)="getFile()" > <!--(click)="getFile()" -->
-    
+            <div *ngIf="erromsg">
+                {{ erromsg }}
+            </div>
             <div class="button-group">
                 <input hidden type="file" accept="Image/*" name="imagem" id="imagem" (change)="onChange($event)"/>
                 <input type="text" name="nome" id="nome"  placeholder="Nome" formControlName="name"/>

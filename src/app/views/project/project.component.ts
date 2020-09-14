@@ -12,6 +12,13 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class ProjectComponent implements OnInit {
   projetoForm: FormGroup;
   imageList: Array<any> = [];
+  showToolsResult: boolean = false;
+  public toolsOptions: Array<any> = [
+    { name:'Figma', url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg'},
+    { name:'Reaper', url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/reaper.svg'},
+    { name:'Photoshop', url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/photshop.svg'},
+    { name:'LightRoom', url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/lightroom.svg'}
+  ]
 
   constructor(
     private authService: AuthService,
@@ -28,9 +35,10 @@ export class ProjectComponent implements OnInit {
       description: new FormControl(null, Validators.required),
       date: new FormControl(new Date().toISOString().substring(0, 10), Validators.required),
       tags: new FormControl(null),
+      tools: new FormControl([], Validators.required),
       files: new FormControl([])
     });
-
+    
     console.log(this.projetoForm.value);
   }
 
@@ -52,7 +60,21 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  print($event){
+  hidden(){
+    const tools = this.projetoForm.get('tools').value as Array<any>;
+    if (tools.length === 0) {
+      console.log('Não foi selecionado nada');
+      return 
+    }
+    console.log('Foi selecionado sim!');
+    document.getElementById('tools').hidden = true;
+    this.showToolsResult = true;
+  }
+  show(){
+    document.getElementById('tools').hidden = false;
+    this.showToolsResult = false;
+  }
+  print($event = 'texto'){
     console.log("Dragula");
     console.log($event);
   }

@@ -37,7 +37,7 @@
 
                 <div class="form-row">
                     <textarea class="form-control" style="resize: none;" name="description" id="description" cols="30"
-                        rows="10" placeholder="Descrição" formControlName="description"></textarea>
+                        rows="10" maxlength="200" placeholder="Descrição" formControlName="description"></textarea>
                 </div>
 
                 <div class="form-row">
@@ -46,17 +46,18 @@
                 </div>
 
                 <div class="form-row">
-                    <select class="form-control custom-select" type="select" name="tools" id="tools"
-                        placeholder="Ferramentas" formControlName="tools" size="2" multiple>
+                    <!-- {{ this.projetoForm.get('tools').value }} -->
+                    <!-- <div class="mt-1 ml-1 mr-1 w-100 showResult" *ngIf="showToolsResult">
+                        <ul class="mt-1 mb- d-flex justify-content-center align-items-center" >
+                            <li style="list-style: none;" class="ml-3" *ngFor="let tool of this.projetoForm.get('tools').value"> {{ tool.name }}</li>
+                            <li style="list-style: none;"><button (click)="show()">+</button></li>
+                        </ul>
+                        
+                    </div> -->
+                    <select class="form-control custom-select scrollable-element" type="select" name="tools" id="tools"
+                        placeholder="Ferramentas" formControlName="tools" size="3" multiple>
                         <option value="1" disabled selected>Ferramentas</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option  *ngFor="let tool of toolsOptions" [value]="tool.url">{{ tool.name }}</option>
                     </select>
                 </div>
 

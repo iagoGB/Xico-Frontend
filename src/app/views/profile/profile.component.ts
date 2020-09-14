@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/interfaces';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,11 +10,12 @@ import { User } from 'src/app/interfaces/interfaces';
   styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent implements OnInit {
-  user: User = null;
+  public user: User = null;
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -42,4 +44,9 @@ export class ProfileComponent implements OnInit {
     },(err) => {})
   }
 
+  isOwner(){
+    console.log('Executou is owner');
+    console.log('is Owner' + this.authService.isLoggedIn() && this.authService.getData()?.id === this.user.id);
+    return this.authService.isLoggedIn() && this.authService.getData().id === this.user.id;
+  }
 }

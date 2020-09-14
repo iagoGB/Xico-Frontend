@@ -5,7 +5,7 @@
             <input type="password" name="password" id="password"  placeholder="Senha" formControlName="password"/>
             <input class="entrar" type="button" value="ENTRAR" (click)="onLogin()">
             <input class="esqueceu" type="button" value="Esqueceu sua Senha?">
-            <input class="cadastra" type="button" value="Cadastre-se">
+            <input class="cadastra" type="button" value="Cadastre-se" [routerLink]="['/inscreva-se']">
         </div> 
     </app-custom-background>
 </div>

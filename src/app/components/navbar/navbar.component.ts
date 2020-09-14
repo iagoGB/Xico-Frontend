@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(){
+    this.getUserPicture();
   }
 
   logout(){
@@ -36,6 +37,9 @@ export class NavbarComponent implements OnInit {
     console.log(userID);
     return this.userService.getUser(userID).subscribe((resp: any) => {
       this.userPicture = resp.image;
+    },
+    (err) =>{
+      this.userPicture = 'assets/profile.png'
     })
   }
 

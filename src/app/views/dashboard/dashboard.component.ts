@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.sass']
 })
 export class DashboardComponent implements OnInit {
+  list: any[];
 
-  constructor() { }
+  constructor(
+    private portfolioService: PortfolioService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit()  {
+    this.portfolioService.findAll().subscribe(
+      (success:any[]) => {
+        this.list = success.reverse();
+      },
+      (err) => {
+        console.log('deu erro' + err);
+      }
+    )
   }
 
 }
