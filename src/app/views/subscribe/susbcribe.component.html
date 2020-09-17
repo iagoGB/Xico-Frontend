@@ -8,16 +8,63 @@
             <div class="button-group">
                 <input hidden type="file" accept="Image/*" name="imagem" id="imagem" (change)="onChange($event)"/>
                 <input type="text" name="nome" id="nome"  placeholder="Nome" formControlName="name"/>
+                <div class="pl-2" *ngIf="submitted && f.name.errors">
+                    <div *ngIf="f.name.errors.required">
+                        Campo obrigatório
+                    </div>
+                </div>
                 <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" formControlName="lastName" />
+                <div class="pl-2" *ngIf="submitted && f.lastName.errors">
+                    <div *ngIf="f.lastName.errors.required">
+                        Campo obrigatório
+                    </div>
+                </div>
                 <input type="text" name="nickname" id="nickname" placeholder="Nickname" formControlName="nickname" maxlength="11" />
+                <div class="pl-2" *ngIf="submitted && f.nickname.errors">
+                    <div *ngIf="f.nickname.errors.required">
+                        Campo obrigatório
+                    </div>
+                </div>
                 <input type="email" name="email" id="email" placeholder="Email" formControlName="email">
-                <input type="email" name="email" id="email" placeholder="Confirmar Email" formControlName="email">
+                <div class="pl-2" *ngIf="submitted && f.email.errors">
+                    <div *ngIf="f.email.errors.email">
+                        Email inválido
+                    </div>
+                    <div *ngIf="f.email.errors.required">
+                        Campo obrigatório
+                    </div>
+                </div>
+               
+                <input type="email" name="confirm_email" id="confirm_email" placeholder="Confirmar Email" formControlName="confirm_email">
+                <div class="pl-2" *ngIf="submitted && f.confirm_email.errors">
+                    <div *ngIf="f.confirm_email.errors.email">
+                        Email inválido
+                    </div>
+                    <div *ngIf="f.confirm_email.errors.required">
+                        Campo obrigatório
+                    </div>
+                </div>
                 <input type="text" name="ano_ingresso" id="ano_ingresso" placeholder="2020.1" formControlName="entryDate" maxlength="6"/>
+                <div class="pl-2" *ngIf="submitted && f.entryDate.errors">
+                    <div *ngIf="f.entryDate.errors.required">
+                        Campo obrigatório
+                    </div>
+                </div>
                 <input type="password" name="senha" id="senha" placeholder="Senha" formControlName="password"/>
+                <div class="pl-2" *ngIf="submitted && f.password.errors">
+                    <div *ngIf="f.password.errors.required">
+                        Campo obrigatório
+                    </div>
+                </div>
                 <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Confirme a senha"  formControlName="confirm_password"/>
+                <div class="pl-2" *ngIf="submitted && f.confirm_password.errors">
+                    <div *ngIf="f.confirm_password.errors.required">
+                        Campo obrigatório
+                    </div>
+                </div>
                 
             </div>
-            <input class="continuar" type="button" value="CONTINUAR" (click)="onSubmit()"/>
+            <input class="continuar" type="button" value="CONTINUAR" (click)="onSubmit()" />
             
         </div> 
     </app-custom-background>
