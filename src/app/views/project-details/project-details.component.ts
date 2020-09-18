@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { UserService } from 'src/app/services/user.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-project-details',
@@ -20,13 +21,17 @@ export class ProjectDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private userService: UserService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private spinnerService: NgxSpinnerService
     
   ) { }
 
   ngOnInit() {
+    this.spinnerService.show();
     this.route.params.subscribe(
-      params => this.loadProject(params['id']),
+      (params) => {
+        this.loadProject(params['id']);
+      },
       (err) =>{}
     );
   }
@@ -47,7 +52,6 @@ export class ProjectDetailsComponent implements OnInit {
         } else {
           this.itemsPerSlide = 5;
         }
-        console.log(this.portfolio);
         this.getUserDetails(this.portfolio.userID);
       },
       (err) => {
@@ -60,6 +64,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.userService.getUser(userID).subscribe(
       (resp) => {
         this.user = resp;
+        this.spinnerService.hide();
       },
       (err) =>{
         console.log('Ocorreu um erro ao trazer as informações do usuário');

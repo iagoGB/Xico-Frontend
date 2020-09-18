@@ -1,52 +1,49 @@
-<div class="row  justify-content-between mt-5 ml-5 mr-5">
-    <div>
-        <h3>{{ portfolio.title }}</h3>
-    </div>
-    <div class="button" (click)="close()" tabindex="0" role="button"><img src="/assets/close.png" alt=""></div>
-</div>
+<div style="position: relative;">
 
-<div class="row ml-5 mr-5 mt-2 flex-column broken-border">
-    <div class="no-border" style="width: 50%; height: 8px; background-color: black; margin-top: -5px"></div>
-    <div class="user d-flex">
-        <img style="object-fit: cover;" [src]="user.image"  width="35" height="50" alt="">
-        <div class="info">
-            <h5 [routerLink]="['/perfil',this.portfolio.userID ]">{{ user.nickname }}</h5>
-            <ul class="d-flex">
-                <li class="mr-2" *ngFor=" let tag of portfolio.tags">{{ tag }}</li>
-            </ul>
-            <ul class="d-flex">
-                <li class="mr-2" *ngFor=" let tool of portfolio.tools"><img [src]="tool" width="20" height="20" alt=""></li>
-            </ul>
+    <div class="row  justify-content-between mt-5 ml-5 mr-5">
+        <div>
+            <h3>{{ portfolio.title }}</h3>
+        </div>
+        <div class="button" (click)="close()" tabindex="0" role="button"><img src="/assets/close.png" alt=""></div>
+    </div>
+    
+    <div class="row ml-5 mr-5 mt-2 flex-column broken-border">
+        <div class="no-border" style="width: 50%; height: 8px; background-color: black; margin-top: -5px"></div>
+        <div class="user d-flex">
+            <img style="object-fit: cover;" [src]="user.image" width="35" height="50" alt="">
+            <div class="info">
+                <h5 [routerLink]="['/perfil',this.portfolio.userID ]">{{ user.nickname }}</h5>
+                <ul class="d-flex">
+                    <li class="mr-2" *ngFor=" let tag of portfolio.tags">{{ tag }}</li>
+                </ul>
+                <ul class="d-flex">
+                    <li class="mr-2" *ngFor=" let tool of portfolio.tools"><img [src]="tool" width="20" height="20" alt="">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="description p-2 pr-5">
+            {{ portfolio.description }}
+        </div>
+    
+    </div>
+    
+    <div class="row carousel-background mt-5 d-flex justify-content-center">
+        <carousel class="pl-3 pr-3" [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset"
+            [isAnimated]="true" [interval]="false" [noWrap]="noWrap">
+            <slide *ngFor="let slide of portfolio.files; let index=index">
+                <img class="image-carousel m-3 " [ngClass]="(index % 2 == 0)? 'mt-4': 'mt-5'" [src]="slide"
+                    alt="image slide" width="259" height="288">
+    
+                <!-- <div class="carousel-caption">
+          <h4>Slide {{index}}</h4>
+        </div> -->
+            </slide>
+        </carousel>
+        <div class="w-100 d-flex justify-content-center">
+            <div class="w-75 bottom-border">
+    
+            </div>
         </div>
     </div>
-    <div class="description p-2 pr-5">
-        {{ portfolio.description }}
-    </div>
-   
 </div>
-
-<div class="row carousel-background mt-5 d-flex justify-content-center">
-    <carousel  class="pl-3 pr-3" [itemsPerSlide]="itemsPerSlide"
-        [singleSlideOffset]="singleSlideOffset"
-        [isAnimated]="true"
-        [interval]="false"
-        [noWrap]="noWrap"
-    >
-  <slide *ngFor="let slide of portfolio.files; let index=index">
-    <img class="image-carousel m-3 " [ngClass]="(index % 2 == 0)? 'mt-4': 'mt-5'" [src]="slide" alt="image slide" width="259" height="288" >
-  
-    <!-- <div class="carousel-caption">
-      <h4>Slide {{index}}</h4>
-    </div> -->
-  </slide>
-</carousel>
-<div class="w-100 d-flex justify-content-center">
-    <div  class="w-75 bottom-border" >
-
-    </div>
-</div>
-</div>
-
-<!-- {{ portfolio.tags }}
-{{ portfolio.userID }}
-{{ portfolio.files }} -->

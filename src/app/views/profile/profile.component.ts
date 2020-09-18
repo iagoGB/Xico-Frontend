@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile',
@@ -15,10 +16,12 @@ export class ProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private spinnerService: NgxSpinnerService
   ) { }
 
   ngOnInit() {
+    this.spinnerService.show();
     this.route.params.subscribe(params => {
       this.getUserDetails(params['id']);
     })
@@ -40,13 +43,11 @@ export class ProfileComponent implements OnInit {
         // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
         // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
       ]
-      console.log(this.user.tools);
+      this.spinnerService.hide();
     },(err) => {})
   }
 
   isOwner(){
-    console.log('Executou is owner');
-    console.log('is Owner' + this.authService.isLoggedIn() && this.authService.getData()?.id === this.user.id);
     return this.authService.isLoggedIn() && this.authService.getData().id === this.user.id;
   }
 }

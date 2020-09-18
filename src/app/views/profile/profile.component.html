@@ -1,5 +1,6 @@
+
 <app-navbar></app-navbar>
-<div  class="profile">
+<div  style="position:relative" class="profile">
     <div class="image-header">
         <div>
             <img class="user" *ngIf="user.image" [src]="user.image" alt="">
@@ -54,3 +55,4 @@
     <app-project-list [list]="user.projects" [create]="isOwner()">  
     </app-project-list>
 </div>
+

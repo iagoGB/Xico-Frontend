@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { DragulaModule } from 'ng2-dragula';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProjectComponent } from './views/project/project.component';
 import { ProjectDetailsComponent } from './views/project-details/project-details.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -43,12 +44,17 @@ import { ProjectDetailsComponent } from './views/project-details/project-details
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     TooltipModule.forRoot(),
     SortableModule.forRoot(),
     CarouselModule.forRoot(),
     DragulaModule.forRoot()
   ],
+  exports:[
+    NgxSpinnerModule
+  ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 })

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class SusbcribeComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
+    private spinner: NgxSpinnerService,
     private router: Router
   ) { }
 
@@ -77,6 +79,12 @@ export class SusbcribeComponent implements OnInit {
       return
     }
 
+    this.saveUser(form);
+    
+  }
+
+  saveUser(form:any){
+    this.spinner.show();
     this.userService.save(this.form.value, this.image).subscribe((resp) => {
       this.automaticLogin({ email:form.email, password: form.password });
     },
@@ -87,6 +95,7 @@ export class SusbcribeComponent implements OnInit {
    this.authService.login(form).subscribe((resp) => {
       this.authService.autenthicate(resp);
       this.router.navigate(['/']);
+      this.spinner.hide();
     });
   }
 

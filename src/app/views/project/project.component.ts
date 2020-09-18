@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
@@ -23,7 +24,8 @@ export class ProjectComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private location: Location,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private spinnerService: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -80,10 +82,12 @@ export class ProjectComponent implements OnInit {
   }
 
   createProject(){
+    this.spinnerService.show();
     this.portfolioService.save(this.imageList,this.projetoForm.value).subscribe(
       (success) => {
         console.log('Criou!'+ success);
         this.location.back();
+        this.spinnerService.hide();
       },
       (err) => {
         console.log('Deu erro!' + err);
