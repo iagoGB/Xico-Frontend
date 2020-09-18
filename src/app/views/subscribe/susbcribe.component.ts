@@ -4,6 +4,7 @@ import {UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -18,10 +19,11 @@ export class SusbcribeComponent implements OnInit {
   submitted: boolean;
 
   constructor(
+    private router: Router,
+    private alert: ToastrService,
     private userService: UserService,
     private authService: AuthService,
-    private spinner: NgxSpinnerService,
-    private router: Router
+    private spinner: NgxSpinnerService, 
   ) { }
 
   ngOnInit() {
@@ -62,21 +64,21 @@ export class SusbcribeComponent implements OnInit {
     this.submitted = true;
     const form = this.form.value;
     if (!this.image) {
-      this.setErrorMessage('Por favor selecione uma imagem');
+      this.alert.warning('Por favor, selecione uma imagem para o seu perfil');
       return;
     }
 
     if (form.email != form.confirm_email){
-      this.setErrorMessage('Emails digitados estão diferentes');
+      this.alert.warning('Emails digitados estão diferentes');
       return;
     }
 
     if (form.password != form.confirm_password){
-      this.setErrorMessage('Senhas incompatíveis');
+      this.alert.warning('Senhas incompatíveis');
       return;
     }
     if (!this.form.valid){
-      return
+      return;
     }
 
     this.saveUser(form);
@@ -86,6 +88,7 @@ export class SusbcribeComponent implements OnInit {
   saveUser(form:any){
     this.spinner.show();
     this.userService.save(this.form.value, this.image).subscribe((resp) => {
+      this.alert.success(`Conta criada! Seja bem vindo(a) ${form.name} !`);
       this.automaticLogin({ email:form.email, password: form.password });
     },
     err => console.log('Doesn\'t work!', err));

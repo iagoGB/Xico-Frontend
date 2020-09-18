@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { UserService } from 'src/app/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Lightbox } from 'ngx-lightbox';
 
 @Component({
   selector: 'app-project-details',
@@ -21,6 +22,7 @@ export class ProjectDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private userService: UserService,
+    private lightBox: Lightbox,
     private portfolioService: PortfolioService,
     private spinnerService: NgxSpinnerService
     
@@ -40,6 +42,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.portfolioService.findByID(id).subscribe(
       (resp) => {
         this.portfolio = resp;
+        this.convertImages();
         const tamanhoDoArray = this.portfolio.files.length;
         if (tamanhoDoArray === 1){
           this.itemsPerSlide = 1;
@@ -59,6 +62,12 @@ export class ProjectDetailsComponent implements OnInit {
       }
     )
   }
+  convertImages() {
+    let list = this.portfolio.files as Array<any>;
+    this.portfolio.files = list.map((e) => { 
+      return { src: e } 
+    });
+  }
 
   getUserDetails(userID: number) {
     this.userService.getUser(userID).subscribe(
@@ -76,4 +85,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.location.back();
   }
 
+  open(index: number){
+    this.lightBox.open(this.portfolio.files,index, { centerVertically: false });
+  }
 }

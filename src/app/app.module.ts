@@ -22,6 +22,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProjectComponent } from './views/project/project.component';
 import { ProjectDetailsComponent } from './views/project-details/project-details.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
+import { LightboxModule } from 'ngx-lightbox';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     TooltipModule.forRoot(),
     SortableModule.forRoot(),
     CarouselModule.forRoot(),
-    DragulaModule.forRoot()
+    DragulaModule.forRoot(),
+    ToastrModule.forRoot(),
+    LightboxModule
   ],
   exports:[
     NgxSpinnerModule

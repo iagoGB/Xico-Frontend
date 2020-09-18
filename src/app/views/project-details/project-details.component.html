@@ -32,8 +32,8 @@
         <carousel class="pl-3 pr-3" [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset"
             [isAnimated]="true" [interval]="false" [noWrap]="noWrap">
             <slide *ngFor="let slide of portfolio.files; let index=index">
-                <img class="image-carousel m-3 " [ngClass]="(index % 2 == 0)? 'mt-4': 'mt-5'" [src]="slide"
-                    alt="image slide" width="259" height="288">
+                <img class="image-carousel m-3 " [ngClass]="(index % 2 == 0)? 'mt-4': 'mt-5'" [src]="slide.src"
+                    alt="image slide" width="259" height="288" (click)="open(index)">
     
                 <!-- <div class="carousel-caption">
           <h4>Slide {{index}}</h4>

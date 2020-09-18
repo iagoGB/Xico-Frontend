@@ -50,7 +50,9 @@ h3,h2,h1, span
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"
   filter: alpha(opacity=20)
 
+@import '~ngx-toastr/toastr'
 
+//Carousel extra config
 
 ol.carousel-indicators
     bottom: -120px !important
@@ -66,5 +68,33 @@ ol.carousel-indicators
   position: relative
   top: -5px
   opacity: 1
+
+.carousel-control-prev-icon, .carousel-control-next-icon
+  width: 40px
+  height: 40px
+
+.carousel-control-next-icon
+  background-image: url('/assets/right.svg') !important
+
+.carousel-control-prev-icon
+  background-image: url('/assets/left.svg') !important
+
+// Image viewer extra config 
+
+.lb-nav a.lb-next
+  position: relative
+  right: -80px !important
+  background-image: url('/assets/right.svg') !important
+
+.lb-nav a.lb-prev
+  position: relative
+  left: -80px !important
+  background-image: url('/assets/left.svg') !important
+
+.lb-data .lb-close
+  background-image: url('/assets/close.png') !important
+  &:hover
+    transform: rotate(360deg)
+    -webkit-transform: rotate(360deg)
     
 
