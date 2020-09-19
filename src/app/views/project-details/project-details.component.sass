@@ -33,6 +33,7 @@ li
 
 carousel
     margin-top: -100px
+    animation: animation 1.2s
 
 .image-carousel
     object-fit: cover
@@ -52,3 +53,9 @@ carousel
     margin-top: -80px
     border:5px solid $pink
     z-index: -1
+
+@keyframes animation
+    from 
+        margin-top: -200px
+    to
+        margin-top: -100px

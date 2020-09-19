@@ -31,7 +31,7 @@ export class ProjectDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    document.getElementById('t').click();
+    this.spinnerService.show();
     this.subscription = this.route.params;
     this.subscription.subscribe(
       (params) => {
@@ -40,11 +40,6 @@ export class ProjectDetailsComponent implements OnInit {
       (err) =>{}
     );
     
-  }
-
-  clickFunction(){
-    console.log('clicou');
-    this.spinnerService.show();
   }
 
   loadProject( id: number ){
@@ -102,6 +97,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.loadedImages +=1;
     console.log('Carregou'+ this.loadedImages);
     if (this.loadedImages === this.portfolio.files.length){
+      document.getElementById('hid').hidden = false;
       this.spinnerService.hide();
     }
   }
