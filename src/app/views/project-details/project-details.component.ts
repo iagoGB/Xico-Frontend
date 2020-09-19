@@ -17,6 +17,8 @@ export class ProjectDetailsComponent implements OnInit {
   itemsPerSlide: number = null;
   singleSlideOffset = true;
   noWrap = false;
+  loadedImages: number = 0;
+  subscription: any = null;
   
   constructor(
     private route: ActivatedRoute,
@@ -29,16 +31,24 @@ export class ProjectDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.spinnerService.show();
-    this.route.params.subscribe(
+    document.getElementById('t').click();
+    this.subscription = this.route.params;
+    this.subscription.subscribe(
       (params) => {
-        this.loadProject(params['id']);
+          this.loadProject(params['id']);
       },
       (err) =>{}
     );
+    
+  }
+
+  clickFunction(){
+    console.log('clicou');
+    this.spinnerService.show();
   }
 
   loadProject( id: number ){
+   
     this.portfolioService.findByID(id).subscribe(
       (resp) => {
         this.portfolio = resp;
@@ -73,7 +83,6 @@ export class ProjectDetailsComponent implements OnInit {
     this.userService.getUser(userID).subscribe(
       (resp) => {
         this.user = resp;
-        this.spinnerService.hide();
       },
       (err) =>{
         console.log('Ocorreu um erro ao trazer as informações do usuário');
@@ -87,5 +96,18 @@ export class ProjectDetailsComponent implements OnInit {
 
   open(index: number){
     this.lightBox.open(this.portfolio.files,index, { centerVertically: false });
+  }
+
+  print(){
+    this.loadedImages +=1;
+    console.log('Carregou'+ this.loadedImages);
+    if (this.loadedImages === this.portfolio.files.length){
+      this.spinnerService.hide();
+    }
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+    console.log('destruiu')
   }
 }

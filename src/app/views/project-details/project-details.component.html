@@ -1,5 +1,5 @@
-<div style="position: relative;">
-
+<div>
+    <input type="hidden" id="t" name="" (click)="clickFunction()"/>
     <div class="row  justify-content-between mt-5 ml-5 mr-5">
         <div>
             <h3>{{ portfolio.title }}</h3>
@@ -33,7 +33,7 @@
             [isAnimated]="true" [interval]="false" [noWrap]="noWrap">
             <slide *ngFor="let slide of portfolio.files; let index=index">
                 <img class="image-carousel m-3 " [ngClass]="(index % 2 == 0)? 'mt-4': 'mt-5'" [src]="slide.src"
-                    alt="image slide" width="259" height="288" (click)="open(index)">
+                    alt="image slide" width="259" height="288" (click)="open(index)"  (load)="print()">
     
                 <!-- <div class="carousel-caption">
           <h4>Slide {{index}}</h4>
@@ -47,3 +47,4 @@
         </div>
     </div>
 </div>
+
