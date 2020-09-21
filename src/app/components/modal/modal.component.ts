@@ -22,7 +22,6 @@ export class ModalComponent implements OnInit,OnChanges {
     }
 
     ngOnInit() {
-      console.log("iniciou a modal")
     }
 
     close() {

@@ -1,4 +1,4 @@
-<div class="p-5">
+<div  class="p-5">
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6 mt-2" (click)="createProject()" *ngIf="create">
             <div class="d-flex justify-content-center new-project" >
@@ -6,11 +6,18 @@
             </div>
         </div>
         <div *ngFor="let project of list" class="col-lg-3 col-md-4 col-sm-6 mt-2" (click)="viewProject(project.id)">
-            <div class="card text-right">
-                <img class="card-img-top" [src]="project.files[0]" alt="Card image cap">
-                <div class="card-body">
-                    <img src="/assets/like.svg" alt="" srcset=""> <span class="first">{{ project.likes.length }}</span>
-                    <img src="/assets/view.svg" alt="" srcset=""> <span>{{ project.views.length}}</span>
+            <div class="bg-p" style="background-color: #E82E7C; position: relative; border-radius: 3px;">
+                <div class="card text-right">
+                    <img class="card-img-top" [src]="project.files[0]" alt="Card image cap" (error)="onLoad()" (load)="onLoad()">
+                    <div class="card-body d-flex justify-content-between ">
+                        <div>
+                            <img  class="user-picture show-in" *ngIf="userDetails && project.userDetails" [src]="project.userDetails?.image" width="25"  height="25" alt="" srcset=""> <span  *ngIf="userDetails" class="first show-in" (click)="goToProfile(project.userDetails.id)">{{ project.userDetails?.nickname }}</span>
+                        </div>
+                        <div >
+                            <img class="icons show-in" src="/assets/like.svg" alt="" srcset=""> <span class="first show-in">{{ project.likes.length }}</span>
+                            <img class="icons show-in" src="/assets/view.svg" alt="" srcset=""> <span class="show-in">{{ project.views.length}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -24,6 +24,7 @@ import { ProjectDetailsComponent } from './views/project-details/project-details
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { LightboxModule } from 'ngx-lightbox';
+import { TagInputModule } from 'ngx-chips';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { LightboxModule } from 'ngx-lightbox';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    TagInputModule,
     TooltipModule.forRoot(),
     SortableModule.forRoot(),
     CarouselModule.forRoot(),

@@ -15,10 +15,10 @@ export class ProjectComponent implements OnInit {
   imageList: Array<any> = [];
   showToolsResult: boolean = false;
   public toolsOptions: Array<any> = [
-    { name:'Figma', url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg'},
-    { name:'Reaper', url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/reaper.svg'},
-    { name:'Photoshop', url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/photshop.svg'},
-    { name:'LightRoom', url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/lightroom.svg'}
+    { display:'Figma', value: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg'},
+    { display:'Reaper', value: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/reaper.svg'},
+    { display:'Photoshop', value: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/photshop.svg'},
+    { display:'LightRoom', value: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/lightroom.svg'}
   ]
 
   constructor(
@@ -41,7 +41,6 @@ export class ProjectComponent implements OnInit {
       files: new FormControl([])
     });
     
-    console.log(this.projetoForm.value);
   }
 
   getImages() {
@@ -52,7 +51,6 @@ export class ProjectComponent implements OnInit {
     if ($event.target.files.length > 0) {
       const files = $event.target.files as FileList;
       for (let index = 0; index < files.length; index++) {
-        console.log(files[index].name);
         const reader = new FileReader();
         reader.readAsDataURL(files[index]);
         reader.onload = (event) => {
@@ -65,10 +63,9 @@ export class ProjectComponent implements OnInit {
   hidden(){
     const tools = this.projetoForm.get('tools').value as Array<any>;
     if (tools.length === 0) {
-      console.log('Não foi selecionado nada');
+
       return 
     }
-    console.log('Foi selecionado sim!');
     document.getElementById('tools').hidden = true;
     this.showToolsResult = true;
   }
@@ -77,15 +74,12 @@ export class ProjectComponent implements OnInit {
     this.showToolsResult = false;
   }
   print($event = 'texto'){
-    console.log("Dragula");
-    console.log($event);
   }
 
   createProject(){
     this.spinnerService.show();
     this.portfolioService.save(this.imageList,this.projetoForm.value).subscribe(
       (success) => {
-        console.log('Criou!'+ success);
         this.location.back();
         this.spinnerService.hide();
       },

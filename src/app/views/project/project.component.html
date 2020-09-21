@@ -40,9 +40,28 @@
                         rows="10" maxlength="200" placeholder="Descrição" formControlName="description"></textarea>
                 </div>
 
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <input class="form-control" type="text" name="tags" id="tags" placeholder="Tags"
                         formControlName="tags" />
+                </div> -->
+
+                <div class="form-row">
+                    <tag-input  
+                        class="ml-1 mr-1"
+                        type="text" name="tags" 
+                        id="tags" 
+                        secondaryPlaceholder="Tags"
+                        placeholder="Tags"
+                        formControlName="tags"
+                        [modelAsStrings]="true"
+                        [addOnBlur]="true"
+                        [separatorKeyCodes]="[32]"
+                        [trimTags]="false"
+                        [ripple]="false"
+                        [maxItems]="5"
+                    >
+                    </tag-input>
+                        
                 </div>
 
                 <div class="form-row">
@@ -54,11 +73,37 @@
                         </ul>
                         
                     </div> -->
-                    <select class="form-control custom-select scrollable-element" type="select" name="tools" id="tools"
+                    <!-- <select class="form-control custom-select scrollable-element" type="select" name="tools" id="tools"
                         placeholder="Ferramentas" formControlName="tools" size="3" multiple>
                         <option value="1" disabled selected>Ferramentas</option>
                         <option  *ngFor="let tool of toolsOptions" [value]="tool.url">{{ tool.name }}</option>
-                    </select>
+                    </select> -->
+                    <tag-input  
+                        class="ml-1 mr-1"
+                        type="text" name="tags" 
+                        id="tags" 
+                        secondaryPlaceholder="Ferramentas"
+                        placeholder="ferramenta"
+                        formControlName="tools"
+                        [identifyBy]="'value'" 
+                        [displayBy]="'display'"
+                        minimumTextLength="2"
+                        [separatorKeyCodes]="[32]"
+                        [maxItems]="5"
+                        [onlyFromAutocomplete]="true"
+                    >
+                        <tag-input-dropdown 
+                            [showDropdownIfEmpty]="true"
+                            [autocompleteItems]="toolsOptions">
+                            <ng-template let-item="item" let-index="index">
+                                <div class="hvr" style="width: 100%">
+                                    {{ item.display }}
+                                </div>
+                                
+                            </ng-template>
+                        </tag-input-dropdown>
+                    </tag-input>
+
                 </div>
 
                 <div class="form-row last d-flex- justify-content-end">

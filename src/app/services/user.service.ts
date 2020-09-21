@@ -19,7 +19,6 @@ export class UserService {
 
   save( user: User, imagem: File ){
     const http = new HttpHeaders().append('Authorization', 'augenega');
-    console.log('imagem: ' + imagem);
     const formData = new FormData();
     formData.append('usuario',JSON.stringify(user));
     formData.append('imagem', imagem);

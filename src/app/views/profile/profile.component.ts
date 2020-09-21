@@ -21,11 +21,11 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.spinnerService.show();
     this.route.params.subscribe(params => {
       this.getUserDetails(params['id']);
     })
   }
+
   getUserDetails(id: number) {
     this.userService.getUser(id).subscribe((resp:User) => {
       this.user = resp;
@@ -43,11 +43,13 @@ export class ProfileComponent implements OnInit {
         // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
         // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
       ]
-      this.spinnerService.hide();
     },(err) => {})
   }
 
   isOwner(){
     return this.authService.isLoggedIn() && this.authService.getData().id === this.user.id;
+  }
+
+  hide(){
   }
 }

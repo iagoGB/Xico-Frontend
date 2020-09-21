@@ -20,7 +20,6 @@ export class AuthService {
   }
 
   autenthicate(value:any){
-    console.log('value authenticated'+ JSON.stringify(value));
     localStorage.setItem('user',JSON.stringify(value));
   }
 

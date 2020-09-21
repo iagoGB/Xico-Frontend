@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit {
   }
   getUserPicture(){
     const userID = this.getUserID();
-    console.log(userID);
     return this.userService.getUser(userID).subscribe((resp: any) => {
       this.userPicture = resp.image;
     },

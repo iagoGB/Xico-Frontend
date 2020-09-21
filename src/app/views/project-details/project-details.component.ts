@@ -95,7 +95,6 @@ export class ProjectDetailsComponent implements OnInit {
 
   print(){
     this.loadedImages +=1;
-    console.log('Carregou'+ this.loadedImages);
     if (this.loadedImages === this.portfolio.files.length){
       document.getElementById('hid').hidden = false;
       this.spinnerService.hide();

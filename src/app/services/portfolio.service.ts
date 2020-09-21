@@ -12,14 +12,12 @@ export class PortfolioService {
   ) { }
 
   save(imageList: any[], value: any) {
-    console.log(value);
-    let result = {...value };
-    result.tags = [result.tags];
+    value.tools = value.tools.map(e => e.value);
     const formData = new FormData();
     imageList.forEach(image => {
       formData.append('images', image.file);
     });
-    formData.append('portfolio',JSON.stringify( result ));
+    formData.append('portfolio',JSON.stringify( value ));
     return this.httpService.post(`${ environment.apiUrl }/portfolio`,formData);
     
   }
