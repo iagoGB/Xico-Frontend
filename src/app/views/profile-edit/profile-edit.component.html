@@ -1,0 +1,107 @@
+<div class="sub">
+    <app-custom-background title="EDITAR PERFIL">
+
+        <input type="file" name="image" id="image" accept="image/*" (change)="onChange($event)" hidden>
+
+        <div class="editar-perfil d-flex flex-column align-items-center" [formGroup]="userForm">
+            <img [src]="userImg" class="image-placeholder" width="259" height="309"  class="m-4" alt="">
+            <img src="assets/layer.svg" width="259" height="309"  class="m-4 layer" alt="" (click)="openGetFile()">
+            <div class="form-row">
+                <input class="form-control" type="text" name="nickname" id="nickname" placeholder="Nickname"
+                    formControlName="nickname" maxlength="11"/>
+            </div>
+            <div class="form-row">
+                <input class="form-control" type="text" name="name" id="name" placeholder="Nome"
+                    formControlName="name" />
+            </div>
+            <div class="form-row">
+                <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Sobrenome"
+                    formControlName="lastName" />
+            </div>
+            <div class="form-row">
+                <input class="form-control" type="text" name="entryDate" id="entryDate" placeholder="Ano de ingresso. ex: 2020.1"
+                    formControlName="entryDate"  maxlength="6"/>
+            </div>
+            <div class="form-row">
+                <input class="form-control" type="text" name="fb" id="fb" placeholder="Facebook ex: facebook.com/usuario.18"
+                    formControlName="fb" />
+            </div>
+
+            <div class="form-row">
+                <input class="form-control" type="text" name="ig" id="ig" placeholder="Instagram ex: instagram.com/usuario"
+                    formControlName="ig" />
+            </div>
+
+            <div class="form-row">
+                <tag-input 
+                    type="text" name="tags" 
+                    id="tags" 
+                    secondaryPlaceholder="Ferramentas"
+                    placeholder="Ferramenta"
+                    formControlName="tools"
+                    [identifyBy]="'value'" 
+                    [displayBy]="'display'"
+                    minimumTextLength="2"
+                    [separatorKeyCodes]="[32]"
+                    [maxItems]="5"
+                    [onlyFromAutocomplete]="true"
+                >
+                    <tag-input-dropdown 
+                        [showDropdownIfEmpty]="true"
+                        [autocompleteItems]="toolsOptions">
+                        <ng-template let-item="item" let-index="index">
+                            <div class="hvr" style="width: 100%">
+                                {{ item.display }}
+                            </div>
+                            
+                        </ng-template>
+                    </tag-input-dropdown>
+                </tag-input>
+            </div>
+
+            <div class="form-row">
+                <textarea class="form-control" style="resize: none;" name="description" id="description" cols="30"
+                    rows="10" maxlength="200" placeholder="Diga algo sobre você" formControlName="description"></textarea>
+            </div>
+
+            <div class="form-row">
+                <input class="form-control" type="text" name="email" id="email" placeholder="Email"
+                    formControlName="email" />
+            </div>
+
+            <div class="form-row buttons d-flex justify-content-between">
+                <button class="btn deletar" (click)="openModal(template)">
+                    DELETAR CONTA
+                </button>
+                <button class="btn salvar" (click)="update()" [disabled]="!userForm.valid">
+                    SALVAR
+                </button >
+            </div>
+
+        </div> 
+    </app-custom-background>
+</div>
+
+
+<ng-template #template>
+    <div>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <p>Tem certeza que deseja fazer isso?<p>
+        <p>Essa ação é irreversível. Uma vez deletada não poderemos recuperar sua conta </p>
+        <div class="d-flex justify-content-around">
+            <input type="hidden" id="show-goodbye" (click)="openModal(goodbye)">
+            <button class="btn deletar yes" (click)="deleteUser();">SIM</button>
+            <button class="btn salvar no" (click)="modalRef.hide()">NÃO</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #goodbye>
+    <div bsModal #modal="bs-modal" (onShow)="handler('onShow', $event)" class="modal-body d-flex justify-content-center" style="height: 150px">
+        <p style="color:white"> Conta Deletada. Sentiremos sua falta!</p>
+    </div>
+</ng-template>

@@ -6,6 +6,7 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { LoginComponent } from './views/login/login.component';
 import { ProjectComponent } from './views/project/project.component';
 import { ProjectDetailsComponent } from './views/project-details/project-details.component';
+import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path:'inscreva-se', component: SusbcribeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'perfil/:id', component: ProfileComponent },
+  { path: 'editar-perfil/:id', component: ProfileEditComponent },
   { path: 'novo-projeto', component: ProjectComponent },
   { path: 'editar-projeto/:id', component: ProjectComponent },
   { path: 'portfolio/:id', component: ProjectDetailsComponent }

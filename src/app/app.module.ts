@@ -25,6 +25,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { LightboxModule } from 'ngx-lightbox';
 import { TagInputModule } from 'ngx-chips';
+import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { TagInputModule } from 'ngx-chips';
     CustomBackgroundComponent,
     ProjectListComponent,
     ProjectComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { TagInputModule } from 'ngx-chips';
     CarouselModule.forRoot(),
     DragulaModule.forRoot(),
     ToastrModule.forRoot(),
+    ModalModule.forRoot(),
     LightboxModule
   ],
   exports:[

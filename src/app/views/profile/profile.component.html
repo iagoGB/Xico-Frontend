@@ -1,6 +1,6 @@
 
 <app-navbar></app-navbar>
-<div   style="position:relative" class="profile">
+<div class="profile">
     <div class="image-header">
         <div>
             <img class="user"  [src]="user.image" alt="" (load)="hide();">
@@ -9,6 +9,7 @@
         
         <div class="title-tools">
             <div class="title">
+                <button [routerLink]="['/editar-perfil', user.id ]" *ngIf="isOwner()">funciona</button>
                 <div class="h-line">
 
                 </div>

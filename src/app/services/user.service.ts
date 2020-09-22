@@ -7,7 +7,6 @@ import { User } from '../interfaces/interfaces';
   providedIn: 'root'
 })
 export class UserService {
-  
 
   constructor(
     private http: HttpClient
@@ -24,4 +23,18 @@ export class UserService {
     formData.append('imagem', imagem);
     return this.http.post(`${ environment.apiUrl }/usuario`, formData, { headers: http});
   }
+
+  update(user: User, image: File) {
+    user.tools = user.tools.map(e => e.value);
+    const formData = new FormData();
+    formData.append('usuario',JSON.stringify(user));
+    if (image)
+      formData.append('imagem', image);
+    return this.http.put<any>(`${ environment.apiUrl }/usuario/${user.id}`,formData);
+  }
+
+  delete(id: number){
+    return this.http.delete(`${ environment.apiUrl }/usuario/${id}`);
+  }
+  
 }

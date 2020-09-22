@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { toolsOptions } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-project',
@@ -14,12 +15,7 @@ export class ProjectComponent implements OnInit {
   projetoForm: FormGroup;
   imageList: Array<any> = [];
   showToolsResult: boolean = false;
-  public toolsOptions: Array<any> = [
-    { display:'Figma', value: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg'},
-    { display:'Reaper', value: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/reaper.svg'},
-    { display:'Photoshop', value: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/photshop.svg'},
-    { display:'LightRoom', value: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/lightroom.svg'}
-  ]
+  toolsOptions:any[] = toolsOptions; 
 
   constructor(
     private authService: AuthService,
