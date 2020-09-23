@@ -9,5 +9,8 @@ export interface User {
     description: string,
     entryDate: string,
     tools: Array<any>,
-    projects: Array<string>
+    projects: Array<string>,
+    interests: Array<String>,
+    ig: string,
+    fb: string
 }

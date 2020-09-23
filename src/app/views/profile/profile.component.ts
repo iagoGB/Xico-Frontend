@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 
 @Component({
   selector: 'app-profile',
@@ -29,21 +30,8 @@ export class ProfileComponent implements OnInit {
   getUserDetails(id: number) {
     this.userService.getUser(id).subscribe((resp:User) => {
       this.user = resp;
-      // this.user.description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, quis fuga! Aspernatur et accusantium esse dicta beatae eius aut debitis laborum recusandae! Labore sequi eum unde facilis eaque sapiente magni? Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium alias iure commodi beatae magni pariatur explicabo sit illum cupiditate. A inventore reiciendis reprehenderit blanditiis temporibus adipisci magni, fugiat alias repellat!";
-      this.user.tools = [
-        // { name:'Figma',url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg'},
-        // { name:'Reaper',url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/reaper.svg'},
-        // { name:'Github',url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/github.svg'},
-        // { name:'Reaper2',url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/reaper.svg'},
-        // { name:'Reaper2',url: 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/reaper.svg'},
-        // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/lightroom.svg',
-        // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
-        // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
-        // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
-        // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
-        // 'https://xicoportfolio.s3.us-east-2.amazonaws.com/tools/figma.svg',
-      ]
-    },(err) => {})
+      this.user.tools = this.user.tools.map(e => this.userService.convertToTools(e));
+    }, err => console.log(err))
   }
 
   isOwner(){
@@ -51,5 +39,9 @@ export class ProfileComponent implements OnInit {
   }
 
   hide(){
+  }
+
+  openLink(url: string){
+    window.open(url, "_blank");
   }
 }

@@ -9,7 +9,7 @@
         
         <div class="title-tools">
             <div class="title">
-                <button [routerLink]="['/editar-perfil', user.id ]" *ngIf="isOwner()">funciona</button>
+               <img class="edit-pencil" [routerLink]="['/editar-perfil', user.id ]" *ngIf="isOwner()" src="/assets/edit_pencil.svg" alt="">
                 <div class="h-line">
 
                 </div>
@@ -30,16 +30,16 @@
             <div class="tools-retangule">
                 <div *ngIf="user.tools.length == 0" style="color:white;width: 100%;height:100%; margin-left: 35px; margin-right: 5px; font-family: Quicksand" class="d-flex justify-content-center">Nenhuma ferramenta  selecionada</div>
                 <img src="/assets/circle-box.png" class="circle-box" width="80" height="80" alt="ferramentas" srcset="">
-                <img *ngFor="let tool of user.tools" class="tool-image" width="60" height="60"  [tooltip]="tool.name" [src]="tool.url" />
+                <img *ngFor="let tool of user.tools" class="tool-image" width="60" height="60"  [tooltip]="tool.display" [src]="tool.value" />
             </div>
         </div>
     </div>
     
     <div class="description">
         <div class="social">
-            <a href="http://" target="_blank"><img src="/assets/twitter.svg" width="26" height="26" alt=""></a>
-            <a href="http://" target="_blank"><img src="/assets/instagram.svg" width="26" height="26" alt=""></a>
-            <a href="http://" target="_blank"><img src="/assets/email.svg" width="26" height="26" alt=""></a>
+            <a *ngIf="user.fb" (click)="openLink(user.fb)"><img src="/assets/twitter.svg" width="26" height="26" alt=""></a>
+            <a *ngIf="user.ig" (click)="openLink(user.ig)"><img src="/assets/instagram.svg" width="26" height="26" alt=""></a>
+            <a  (click)="openLink(user.email)"><img src="/assets/email.svg" width="26" height="26" alt=""></a>
         </div>
         <textarea   name="description" id="descriptions" cols="20" rows="10"  readonly>{{ user.description?  user.description: 'Diga algo sobre você...' }}</textarea>
         

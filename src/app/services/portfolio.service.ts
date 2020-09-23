@@ -29,4 +29,8 @@ export class PortfolioService {
   findAll(){
     return this.httpService.get<any[]>(`${ environment.apiUrl }/portfolio`);
   }
+
+  increaseViews(portfolioID: number){
+    return this.httpService.put<any>(`${ environment.apiUrl }/portfolio/${ portfolioID }/views`,null);
+  }
 }

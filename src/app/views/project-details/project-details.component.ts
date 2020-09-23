@@ -5,6 +5,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 import { UserService } from 'src/app/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Lightbox } from 'ngx-lightbox';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-project-details',
@@ -23,8 +24,9 @@ export class ProjectDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private userService: UserService,
     private lightBox: Lightbox,
+    private userService: UserService,
+    private authService: AuthService,
     private portfolioService: PortfolioService,
     private spinnerService: NgxSpinnerService
     
@@ -32,6 +34,9 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerService.show();
+    this.loadRoute();
+  }
+  loadRoute() {
     this.subscription = this.route.params;
     this.subscription.subscribe(
       (params) => {
@@ -39,7 +44,6 @@ export class ProjectDetailsComponent implements OnInit {
       },
       (err) =>{}
     );
-    
   }
 
   loadProject( id: number ){
@@ -67,6 +71,7 @@ export class ProjectDetailsComponent implements OnInit {
       }
     )
   }
+
   convertImages() {
     let list = this.portfolio.files as Array<any>;
     this.portfolio.files = list.map((e) => { 
@@ -78,11 +83,27 @@ export class ProjectDetailsComponent implements OnInit {
     this.userService.getUser(userID).subscribe(
       (resp) => {
         this.user = resp;
+        this.increaseViews(); 
       },
       (err) =>{
         console.log('Ocorreu um erro ao trazer as informações do usuário');
       }
     )
+  }
+
+  increaseViews() {
+    console.log('saved: '+ this.authService.getData()?.id );
+    console.log('project: '+ this.user.id );
+
+    if (this.authService.getData()?.id === this.user.id){
+      console.log('É o dono não pode add view');
+    } else {
+      console.log('Não é o mesmo usuário pode add view');
+      this.portfolioService.increaseViews(this.portfolio.id).subscribe((sucess) => {
+        // do nothing
+      });
+      
+    }
   }
 
   close(){
