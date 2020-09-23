@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ import { environment } from 'src/environments/environment';
 export class PortfolioService {
   
   constructor(
-    private httpService: HttpClient
+    private httpService: HttpClient,
+    private authService: AuthService
   ) { }
 
   save(imageList: any[], value: any) {
@@ -32,5 +34,9 @@ export class PortfolioService {
 
   increaseViews(portfolioID: number){
     return this.httpService.put<any>(`${ environment.apiUrl }/portfolio/${ portfolioID }/views`,null);
+  }
+
+  updateLike(portfolioID: number) {
+    return this.httpService.put(`${ environment.apiUrl }/portfolio/${ portfolioID }/likes?tanner=${this.authService.getData()?.id}`,null);
   }
 }

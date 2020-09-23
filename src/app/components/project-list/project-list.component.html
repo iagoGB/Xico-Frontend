@@ -14,7 +14,7 @@
                             <img  class="user-picture show-in" *ngIf="userDetails && project.userDetails" [src]="project.userDetails?.image" width="25"  height="25" alt="" srcset=""> <span  *ngIf="userDetails" class="first show-in" (click)="goToProfile(project.userDetails.id)">{{ project.userDetails?.nickname }}</span>
                         </div>
                         <div >
-                            <img class="icons show-in" src="/assets/like.svg" alt="" srcset=""> <span class="first show-in">{{ project.likes.length }}</span>
+                            <img class="icons show-in" src="/assets/like.svg" alt="" srcset=""> <span class="first show-in">{{ project.likes? project.likes : 0 }}</span>
                             <img class="icons show-in" src="/assets/view.svg" alt="" srcset=""> <span class="show-in">{{ project.views ? project.views : 0 }}</span>
                         </div>
                     </div>

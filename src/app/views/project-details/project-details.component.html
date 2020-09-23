@@ -7,6 +7,11 @@
     </div>
     
     <div class="row ml-5 mr-5 mt-2 flex-column broken-border">
+        <div class="like d-flex align-items-center" style="position:absolute">
+            <img *ngIf="isLogged() && !isOwner() && !isLiked()" (click)="updateLike()" tooltip="Curtir" src="/assets/noLiked.svg" alt="">
+            <img *ngIf="isLogged() && !isOwner() && isLiked()" (click)="updateLike()" tooltip="Descurtir" src="/assets/liked.svg" alt="">
+            <div *ngIf="isLogged() && !isOwner() && (!isLiked() || isLiked())" class="ml-2">{{ portfolio.tanners.length }}</div>
+        </div>
         <div class="no-border" style="width: 50%; height: 8px; background-color: black; margin-top: -5px"></div>
         <div class="user d-flex">
             <img *ngIf="user" style="object-fit: cover;" [src]="user.image" width="35" height="50" alt="">
