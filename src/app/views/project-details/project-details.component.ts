@@ -92,13 +92,11 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   increaseViews() {
-    console.log('saved: '+ this.authService.getData()?.id );
-    console.log('project: '+ this.user.id );
 
     if (this.authService.getData()?.id === this.user.id){
-      console.log('É o dono não pode add view');
+      // Não faz nada, não pode aumentar suas próprias views
     } else {
-      console.log('Não é o mesmo usuário pode add view');
+
       this.portfolioService.increaseViews(this.portfolio.id).subscribe((success) => {
         // do nothing
       });
@@ -109,10 +107,8 @@ export class ProjectDetailsComponent implements OnInit {
   updateLike(){
     this.portfolioService.updateLike(this.portfolio.id).subscribe((success) => {
       if (this.isLiked()){
-        console.log('removeu do array')
         this.portfolio.tanners = this.portfolio.tanners.filter(e => e != this.authService.getData()?.id);
       }else {
-        console.log('acrescentou no array')
         this.portfolio.tanners.push(this.authService.getData()?.id);
       }
     })
@@ -136,34 +132,19 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
-    console.log('destruiu')
   }
 
   isLiked(){
     const viewUserID = this.authService.getData()?.id;
     const value = this.portfolio.tanners.find(l => l === viewUserID)
-    if (value)
-      console.log('achou no array, é um curtidor' + value)
-    else 
-    console.log(' NÃO achou no array' + value)
     return  value? true : false
   }
 
   isOwner(){
-    
-    if (this.authService.getData()?.id === this.user.id)
-      console.log("é o dono do projeto");
-    else
-      console.log('Não é o dono do projeto')
     return this.authService.getData()?.id === this.user.id;
   }
   
   isLogged(){
-    
-    if (this.authService.isLoggedIn())
-      console.log('Está logado');
-    else
-      console.log('Não está logado')
     return this.authService.isLoggedIn();
   }
 }

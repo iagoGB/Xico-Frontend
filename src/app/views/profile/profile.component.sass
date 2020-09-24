@@ -32,6 +32,16 @@ $pink: #E82E7C
         z-index: 0
         animation: example
         animation-duration: 6s
+.animation
+  animation: hide-show
+  animation-duration: .2s
+
+@keyframes hide-show
+  from
+    opacity: 0
+  to
+    opacity: 1
+
 
 .image-header
   width: 65%
@@ -144,6 +154,9 @@ img.edit-pencil
   &:hover
     cursor: pointer
     filter: brightness(360)
+
+.effect
+  transition: visibility 1.5s
     
 @keyframes example 
   from

@@ -13,6 +13,7 @@ import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 })
 export class ProfileComponent implements OnInit {
   public user: User = null;
+  public loaded = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +23,9 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //this.spinnerService.show();
+    //this.spinnerService.show("teste");
+    this.showSpinner('teste');
     this.route.params.subscribe(params => {
       this.getUserDetails(params['id']);
     })
@@ -31,6 +35,8 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(id).subscribe((resp:User) => {
       this.user = resp;
       this.user.tools = this.user.tools.map(e => this.userService.convertToTools(e));
+      this.spinnerService.hide('teste');
+      this.loaded = true;
     }, err => console.log(err))
   }
 
@@ -43,5 +49,11 @@ export class ProfileComponent implements OnInit {
 
   openLink(url: string){
     window.open(url, "_blank");
+  }
+
+  showSpinner(name: string){
+    this.spinnerService.show(name).then((value) =>{
+      console.log(value);
+    })
   }
 }

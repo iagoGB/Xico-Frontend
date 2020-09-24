@@ -63,7 +63,6 @@ export class ProfileEditComponent implements OnInit {
 
   loadUserData(id: number) {
     this.userService.getUser(id).subscribe((data: any) => {
-      console.log(data);
       this.userImg = data.image;
       this.userForm.patchValue({
         id: data.id,

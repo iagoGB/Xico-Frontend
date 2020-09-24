@@ -49,7 +49,8 @@
                     <tag-input  
                         class="ml-1 mr-1"
                         type="text" name="tags" 
-                        id="tags" 
+                        id="tags"
+                        [onAdding]="onAdding" 
                         secondaryPlaceholder="Tags"
                         placeholder="Tags"
                         formControlName="tags"
@@ -58,26 +59,13 @@
                         [separatorKeyCodes]="[32]"
                         [trimTags]="false"
                         [ripple]="false"
-                        [maxItems]="5"
+                        [maxItems]="5" 
                     >
                     </tag-input>
                         
                 </div>
 
                 <div class="form-row">
-                    <!-- {{ this.projetoForm.get('tools').value }} -->
-                    <!-- <div class="mt-1 ml-1 mr-1 w-100 showResult" *ngIf="showToolsResult">
-                        <ul class="mt-1 mb- d-flex justify-content-center align-items-center" >
-                            <li style="list-style: none;" class="ml-3" *ngFor="let tool of this.projetoForm.get('tools').value"> {{ tool.name }}</li>
-                            <li style="list-style: none;"><button (click)="show()">+</button></li>
-                        </ul>
-                        
-                    </div> -->
-                    <!-- <select class="form-control custom-select scrollable-element" type="select" name="tools" id="tools"
-                        placeholder="Ferramentas" formControlName="tools" size="3" multiple>
-                        <option value="1" disabled selected>Ferramentas</option>
-                        <option  *ngFor="let tool of toolsOptions" [value]="tool.url">{{ tool.name }}</option>
-                    </select> -->
                     <tag-input  
                         class="ml-1 mr-1"
                         type="text" name="tags" 
@@ -94,6 +82,7 @@
                     >
                         <tag-input-dropdown 
                             [showDropdownIfEmpty]="true"
+                            [keepOpen]="false"
                             [autocompleteItems]="toolsOptions">
                             <ng-template let-item="item" let-index="index">
                                 <div class="hvr" style="width: 100%">

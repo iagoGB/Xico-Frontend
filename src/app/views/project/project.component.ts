@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TagModel } from 'ngx-chips/core/accessor';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { observable, Observable, of } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { toolsOptions } from 'src/app/utils/utils';
@@ -83,5 +85,13 @@ export class ProjectComponent implements OnInit {
         console.log('Deu erro!' + err);
       }
     )
+  }
+
+  public onAdding(tag: TagModel): Observable<TagModel>{
+    const hashtag = '#'
+    if (!tag.startsWith(hashtag)){
+      tag = hashtag.concat(tag.toString());
+    }
+    return of(tag);
   }
 }

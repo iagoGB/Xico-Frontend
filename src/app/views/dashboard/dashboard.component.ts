@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit()  {
-    this.spinnerService.show()
+    this.spinnerService.show();
     this.portfolioService.findAll().subscribe(
       (success:any[]) => {
         this.list = success.reverse();
