@@ -11,7 +11,7 @@
         
         <div class="title-tools">
             <div class="title">
-               <img class="edit-pencil" [routerLink]="['/editar-perfil', user.id ]" *ngIf="isOwner()" src="/assets/edit_pencil.svg" alt="">
+               <img class="edit-pencil" tooltip="Editar perfil" [routerLink]="['/editar-perfil', user.id ]" *ngIf="isOwner()" src="/assets/edit_pencil.svg" alt="">
                 <div class="h-line">
 
                 </div>
@@ -39,11 +39,11 @@
     
     <div class="description">
         <div class="social">
-            <a *ngIf="user.fb" (click)="openLink(user.fb)"><img src="/assets/twitter.svg" width="26" height="26" alt=""></a>
-            <a *ngIf="user.ig" (click)="openLink(user.ig)"><img src="/assets/instagram.svg" width="26" height="26" alt=""></a>
-            <a  (click)="openLink(user.email)"><img src="/assets/email.svg" width="26" height="26" alt=""></a>
+            <a tooltip="Facebook" class="l"*ngIf="user.fb" (click)="openLink(user.fb)"><img src="/assets/twitter.svg" width="26" height="26" alt=""></a>
+            <a tooltip="Instagram" class="l" *ngIf="user.ig" (click)="openLink(user.ig)"><img src="/assets/instagram.svg" width="26" height="26" alt=""></a>
+            <a [tooltip]="user.email"><img src="/assets/email.svg" width="26" height="26" alt=""></a>
         </div>
-        <textarea   name="description" id="descriptions" cols="20" rows="10"  readonly>{{ user.description?  user.description: 'Diga algo sobre você...' }}</textarea>
+        <textarea   name="description" id="descriptions" cols="20" rows="10"  readonly>{{ user.description?  user.description: 'Não há nada aqui...' }}</textarea>
         
     </div>
     
@@ -54,11 +54,23 @@
     <hr class="second">  
 </div>
 
-<div class="projects">
+<div   class="projects">
+    <div class="count-avaliacao">
+        <img  src="/assets/circle.svg" alt="Avaliações">
+        <div class="label position-absolute d-flex flex-column align-items-center">
+            <h3 style="color:white" class="number">{{ totalAvaliations }}</h3>
+            <h3 style="color:white">Avaliações</h3>
+        </div>
+    </div>
+    <div class="mb-3">
+
+    </div>
     <app-project-list [list]="user.projects" [create]="isOwner()" [userDetails]="false">  
     </app-project-list>
 </div>
+    <div class="mb-3">
 
+    </div>
 </div>
 <div style="position: relative;" [hidden]="loaded">
     <ngx-spinner

@@ -17,13 +17,13 @@
     <ng-template #logged>
         <ul class="logged">
             <li>
-                <img [routerLink]="['/']" src="/assets/home.png" alt="home">
+                <img tooltip="Home" [routerLink]="['/']" src="/assets/home.png" alt="home">
             </li>
             <li>
-                <img [routerLink]="['/novo-projeto']" src="/assets/more.png" alt="mais">
+                <img tooltip="Novo projeto" [routerLink]="['/novo-projeto']" src="/assets/more.png" alt="mais">
             </li>
             <li >
-                <img (click)="goToProfile()" class="avatar" [src]="userPicture" onerror="this.src='/assets/profile.png'" alt="sua foto">
+                <img tooltip="Perfil" (click)="goToProfile()" class="avatar" [src]="userPicture" onerror="this.src='/assets/profile.png'" alt="sua foto">
             </li>
         </ul>
     </ng-template>

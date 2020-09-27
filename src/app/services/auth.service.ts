@@ -16,18 +16,18 @@ export class AuthService {
   }
 
   logout(){
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
   }
 
   autenthicate(value:any){
-    localStorage.setItem('user',JSON.stringify(value));
+    sessionStorage.setItem('user',JSON.stringify(value));
   }
 
   getData(){
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(sessionStorage.getItem('user'));
   }
 
   isLoggedIn(){
-    return localStorage.getItem('user')? true : false;
+    return sessionStorage.getItem('user')? true : false;
   }
 }

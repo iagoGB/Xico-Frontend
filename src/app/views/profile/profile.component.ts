@@ -4,7 +4,6 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +13,7 @@ import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 export class ProfileComponent implements OnInit {
   public user: User = null;
   public loaded = false;
+  public totalAvaliations: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.spinnerService.show();
+    this.spinnerService.show();
     //this.spinnerService.show("teste");
     this.showSpinner('teste');
     this.route.params.subscribe(params => {
@@ -35,7 +35,8 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(id).subscribe((resp:User) => {
       this.user = resp;
       this.user.tools = this.user.tools.map(e => this.userService.convertToTools(e));
-      this.spinnerService.hide('teste');
+       this.getTotalAvaliations(this.user);
+      this.spinnerService.hide();
       this.loaded = true;
     }, err => console.log(err))
   }
@@ -48,6 +49,8 @@ export class ProfileComponent implements OnInit {
   }
 
   openLink(url: string){
+    url = 'http://'+url;
+    console.log(url);
     window.open(url, "_blank");
   }
 
@@ -55,5 +58,9 @@ export class ProfileComponent implements OnInit {
     this.spinnerService.show(name).then((value) =>{
       console.log(value);
     })
+  }
+
+  getTotalAvaliations(user: any){
+    user.projects.forEach(e => this.totalAvaliations += e.likes);
   }
 }

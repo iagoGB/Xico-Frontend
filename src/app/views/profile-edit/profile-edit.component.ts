@@ -154,4 +154,20 @@ export class ProfileEditComponent implements OnInit {
     }, 5000);
   }
 
+  includeFb(){
+    let fb = this.userForm.get('fb').value;
+    if (fb === '' || fb === null)
+      this.userForm.patchValue({
+        fb: 'facebook.com/'
+      })
+  }
+
+  includeIg(){
+    let ig = this.userForm.get('ig').value;
+    if (ig === '' || ig === null)
+      this.userForm.patchValue({
+        ig: 'instagram.com/'
+      })
+  }
+
 }
