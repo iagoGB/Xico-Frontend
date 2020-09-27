@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class ProjectListComponent implements OnInit {
   constructor(
     private router: Router,
     private spinner: NgxSpinnerService,
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute,
   ) { }
 
@@ -50,8 +52,16 @@ export class ProjectListComponent implements OnInit {
     this.router.navigate(['perfil', id]);
   }
 
+  editProject(project: any) {
+    this.router.navigate(['editar-projeto',project.id]);
+  }
+
   getCurrentRoute(){
     return this.activatedRoute.component['name'] === "DashboardComponent";
+  }
+
+  isOwner(project){
+    return this.authService.getData()?.id === project.userID;
   }
 
 }

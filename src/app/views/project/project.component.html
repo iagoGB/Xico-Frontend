@@ -1,5 +1,5 @@
 <div class="wraper">
-    <app-custom-background title="NOVO PROJETO">
+    <app-custom-background [title]="title">
 
         <div class="projeto row justify-content-center">
             <div class="col-5 files mt-3 mb-3">
@@ -8,23 +8,32 @@
                         hidden />
                     <div class="col-4 mb-2">
                         <div class="card" (click)="getImages()">
-                            <img class="new-project" src="/assets/new-project.svg" alt="">
+                            <img class="new-project" src="/assets/load_images.svg" alt="">
                         </div>
                     </div>
                     <div 
-                        dragula="IMAGELIST" 
-                        [dragulaModel]="imageList" 
-                        (dragulaModelChange)="imageList = $event" 
-                        class="col-4"
-                        *ngFor="let image of imageList; index as i"
-                    >
+                        class="col-4 position-relative"
+                        *ngFor="let image of projetoForm.get('files').value; index as i">
+                        <div class="card mb-2">
+                            <img class="card-img-top" [src]="image" alt="">
+                            <div  class="position-absolute overlay w-100 h-100">
+                            </div>
+                            <img  (click)="removeImage(i)" class="position-absolute close" style="top:50%; left: 50%; transform: translate(-50%,-50%); opacity: 1;" src="/assets/close.png" alt="">
+                        </div>
+                        
+                    </div>
+                    <div 
+                        class="col-4 position-relative"
+                        *ngFor="let image of imageList; index as i">
                         <div class="card mb-2">
                             <img class="card-img-top" [src]="image.src" alt="">
+                            <div  class="position-absolute overlay w-100 h-100">
+                            </div>
+                            <img  (click)="removeImage(i)" class="position-absolute close" style="top:50%; left: 50%; transform: translate(-50%,-50%); opacity: 1;" src="/assets/close.png" alt="">
                         </div>
+                        
                     </div>
-                </div>
-                <div>
-                   <p>{{ imageList }}</p> 
+                    
                 </div>
             </div>
 
@@ -95,10 +104,10 @@
 
                 </div>
 
-                <div class="form-row last d-flex- justify-content-end">
+                <div class="form-row last d-flex justify-content-end">
                     <input type="text" class="form-control invisible mt-3" />
                     <!-- Apenas para ocupar espaço do layout -->
-                    <input class="btn cadastra" type="button" value="PUBLICAR" (click)="createProject()">
+                    <input class="btn cadastra" type="button" [value]="editing? 'SALVAR': 'PUBLICAR'" (click)="editing? updateProject() : createProject()">
                 </div>
             </div>
         </div>

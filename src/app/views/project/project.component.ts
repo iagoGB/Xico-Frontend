@@ -1,12 +1,14 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { TagModel } from 'ngx-chips/core/accessor';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { UserService } from 'src/app/services/user.service';
 import { toolsOptions } from 'src/app/utils/utils';
 
 @Component({
@@ -15,6 +17,8 @@ import { toolsOptions } from 'src/app/utils/utils';
   styleUrls: ['./project.component.sass']
 })
 export class ProjectComponent implements OnInit {
+  title: string = 'NOVO PROJETO';
+  editing: boolean = false;
   projetoForm: FormGroup;
   imageList: Array<any> = [];
   showToolsResult: boolean = false;
@@ -24,6 +28,8 @@ export class ProjectComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
     private location: Location,
+    private route: ActivatedRoute,
+    private userService: UserService,
     private portfolioService: PortfolioService,
     private spinnerService: NgxSpinnerService
   ) { }
@@ -42,7 +48,34 @@ export class ProjectComponent implements OnInit {
       tools: new FormControl([], Validators.required),
       files: new FormControl([])
     });
+
+    this.route.params.subscribe(params => {
+      if (params['id'] != undefined) {
+        this.spinnerService.show();
+        this.setProjectForm(params['id']);
+        this.title = 'EDITAR PROJETO';
+        this.editing = true;
+      }
+    })
     
+  }
+
+  setProjectForm(arg0: any) {
+    this.portfolioService.findByID(arg0).subscribe((data:any) => {
+      this.projetoForm.patchValue({
+        category: data.category,
+        userID: data.userID,
+        title: data.title,
+        description: data.description,
+        date: data.date,
+        likes: data.likes,
+        views: data.views,
+        tags: data.tags,
+        tools: data.tools.map(e => this.userService.convertToTools(e)),
+        files: data.files
+      });
+      this.spinnerService.hide();
+    })
   }
 
   getImages() {
@@ -103,5 +136,15 @@ export class ProjectComponent implements OnInit {
       tag = hashtag.concat(tag.toString());
     }
     return of(tag);
+  }
+
+  removeImage(index: number){
+    console.log(index);
+    this.imageList.splice(index,1);
+  }
+
+  updateProject(){
+    console.log('É pra atualizar!');
+    console.log(this.projetoForm.value);
   }
 }

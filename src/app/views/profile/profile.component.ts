@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
   getUserDetails(id: number) {
     this.userService.getUser(id).subscribe((resp:User) => {
       this.user = resp;
+      this.user.projects = this.user.projects.reverse();
       this.user.tools = this.user.tools.map(e => this.userService.convertToTools(e));
        this.getTotalAvaliations(this.user);
       this.spinnerService.hide();

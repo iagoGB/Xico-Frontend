@@ -17,9 +17,11 @@ export class DashboardComponent implements OnInit {
   public toolsOptions:any[] = toolsOptions;
   public selectedTool: any;
   public moreOptions: any[] = [
+    { display: "Mais avaliações", value:"likes" },
     { display: "Mais recentes", value:"recents" },
-    { display: "Mais vizualizados", value:"views" },
-    { display: "Mais avaliados", value:"likes" }
+    { display: "Mais vizualizados", value:"views" }
+    
+    
   ];
   public selectedMore: any;
   public selectedTitle: any = null;
@@ -32,11 +34,12 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit()  {
-    this.spinnerService.show();
+    //this.spinnerService.show();
     this.observeRouterParams();
   }
 
   findAll(){
+    this.spinnerService.show();
     this.portfolioService.findAll().subscribe(
       (success:any[]) => {
         this.list = success.reverse();
@@ -64,7 +67,6 @@ export class DashboardComponent implements OnInit {
   observeRouterParams() {
     this.route.params.subscribe((params) => {
       let tag = params['tag'] as string;
-      console.log('tag: '+ tag);
       if (tag != undefined){
         this.spinnerService.show();
         this.portfolioService.findByTag(tag).subscribe((data) => {
