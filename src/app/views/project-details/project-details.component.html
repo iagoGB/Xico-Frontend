@@ -18,7 +18,7 @@
             <div class="info">
                 <h5 [routerLink]="['/perfil',this.portfolio.userID ]">{{ user.nickname }}</h5>
                 <ul class="d-flex">
-                    <li class="mr-2" *ngFor=" let tag of portfolio.tags">{{ tag }}</li>
+                    <li class="tag mr-2" *ngFor=" let tag of portfolio.tags" (click)="searchByTag(tag)">{{ tag }}</li>
                 </ul>
                 <ul class="d-flex">
                     <li class="mr-2" *ngFor=" let tool of portfolio.tools"><img [src]="tool" width="20" height="20" alt="">

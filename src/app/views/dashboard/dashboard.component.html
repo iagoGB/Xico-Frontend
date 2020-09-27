@@ -1,6 +1,48 @@
 <app-navbar></app-navbar>
-<div>
-   <app-project-list [list]="list" [userDetails]="true">
+<div class="ctn">
+   <div class="row ml-4">
+      <div style="position: relative;" class="col-3">
+         <input  
+            class="form-control w-100 search-input" 
+            type="text" 
+            id="" 
+            placeholder="Pesquisar por título"
+            [(ngModel)]="selectedTitle"
+            (keyup.enter)="searchByTitle()"
+         >
+         <div style="position: absolute; right:14px; top: 0px;">
+            <button (click)="searchByTitle()" class="search-button"><img style="background-color: black; object-fit: cover;"  width="36" height="36" src="/assets/search.svg" alt=""></button>
+         </div>
+      </div>
+      <div  class="col-2">
+         <ng-select
+            class="custom" 
+            [items]="moreOptions"
+            placeholder="Filtros"
+            notFoundText="Nenhum resultado"
+            bindLabel="display"
+            bindValue="value"
+            [clearable]="false"
+            [(ngModel)]="selectedMore"
+            (change)="onChangeMoreSearch($event)">
+         </ng-select>
+      </div>
+      <div  class="col-2">
+         <ng-select 
+            class="custom" 
+            [items]="toolsOptions"
+            placeholder="Ferramenta"
+           bindLabel="display"
+           bindValue="value"
+           [clearable]="false"
+           [(ngModel)]="selectedTool"
+           notFoundText="Nenhum resultado"
+           (change)="onChangeTool($event)">
+         </ng-select>
+      </div>
+      
+   </div>
+   <app-project-list [searchLabel]="searchLabel" [list]="list" [userDetails]="true">
 
    </app-project-list>
 </div>

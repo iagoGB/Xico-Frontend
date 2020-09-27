@@ -7,7 +7,6 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class PortfolioService {
-  
   constructor(
     private httpService: HttpClient,
     private authService: AuthService
@@ -39,4 +38,27 @@ export class PortfolioService {
   updateLike(portfolioID: number) {
     return this.httpService.put(`${ environment.apiUrl }/portfolio/${ portfolioID }/likes?tanner=${this.authService.getData()?.id}`,null);
   }
+
+  findByTool(tool: string) {
+    return this.httpService.get<any[]>(`${ environment.apiUrl }/portfolio/tools?value=${tool}`);
+  }
+
+  findByTag(tag: string) {
+    return this.httpService.post<any[]>(`${ environment.apiUrl }/portfolio/tags`, { value: tag });
+
+  }
+
+  findByTitle(title: string) {
+    return this.httpService.post<any[]>(`${ environment.apiUrl }/portfolio/title`, { value: title });
+  }
+
+  findByMore(value: string) {
+    if (value === "likes")
+      return this.httpService.get<any[]>(`${ environment.apiUrl }/portfolio/moreLikes`);
+    else if (value === "views")
+      return this.httpService.get<any[]>(`${ environment.apiUrl }/portfolio/moreViews`);
+    else
+      return this.httpService.get<any[]>(`${ environment.apiUrl }/portfolio/moreRecents`);
+  }
+  
 }

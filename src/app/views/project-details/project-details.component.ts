@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { UserService } from 'src/app/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -22,6 +22,7 @@ export class ProjectDetailsComponent implements OnInit {
   subscription: any = null;
   
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private location: Location,
     private lightBox: Lightbox,
@@ -34,8 +35,9 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerService.show();
-    this.loadRoute();
+    this.loadRoute(); 
   }
+  
   loadRoute() {
     this.subscription = this.route.params;
     this.subscription.subscribe(
@@ -146,5 +148,9 @@ export class ProjectDetailsComponent implements OnInit {
   
   isLogged(){
     return this.authService.isLoggedIn();
+  }
+
+  searchByTag(tag: any){
+    this.router.navigate(['tag',tag]);
   }
 }

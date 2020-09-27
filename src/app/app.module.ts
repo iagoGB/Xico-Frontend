@@ -27,6 +27,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { TagInputModule } from 'ngx-chips';
 import { ProfileEditComponent } from './views/profile-edit/profile-edit.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgSelectModule,
     TagInputModule,
     TooltipModule.forRoot(),
     SortableModule.forRoot(),

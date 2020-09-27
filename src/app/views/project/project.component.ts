@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TagModel } from 'ngx-chips/core/accessor';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { observable, Observable, of } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Observable, of } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { toolsOptions } from 'src/app/utils/utils';
@@ -21,6 +22,7 @@ export class ProjectComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private toastr: ToastrService,
     private location: Location,
     private portfolioService: PortfolioService,
     private spinnerService: NgxSpinnerService
@@ -34,6 +36,8 @@ export class ProjectComponent implements OnInit {
       title: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       date: new FormControl(new Date().toISOString().substring(0, 10), Validators.required),
+      likes: new FormControl(0),
+      views: new FormControl(0),
       tags: new FormControl(null),
       tools: new FormControl([], Validators.required),
       files: new FormControl([])
@@ -67,14 +71,20 @@ export class ProjectComponent implements OnInit {
     document.getElementById('tools').hidden = true;
     this.showToolsResult = true;
   }
+
   show(){
     document.getElementById('tools').hidden = false;
     this.showToolsResult = false;
   }
+
   print($event = 'texto'){
   }
 
   createProject(){
+    if (this.imageList.length === 0) {
+      this.toastr.warning('Você deve selecionar pelo menos uma imagem!');
+      return;
+    }
     this.spinnerService.show();
     this.portfolioService.save(this.imageList,this.projetoForm.value).subscribe(
       (success) => {

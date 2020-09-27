@@ -159,4 +159,27 @@ delete-icon span:after
   p
     margin-bottom: 0px
 
+// Ng-Select
+@import "~@ng-select/ng-select/themes/default.theme.css"
+
+.ng-select.custom .ng-select-container
+  background-color: $pink !important
+  border-color: $pink
+  font-family: Quicksand
+  color: black
+  .ng-placeholder
+    justify-content: center !important
+    align-items: center !important
+    color: black !important
+    font-weight: bold
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option
+  background-color: $pink !important
+  border-color: $pink
+  &:hover
+    background-color: black !important
+    color: white
+span.ng-option-label
+  font-family: Quicksand !important
+
+
 

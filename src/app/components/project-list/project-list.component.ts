@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProjectListComponent implements OnInit {
   @Input() list: Array<any>;
   @Input() create: boolean = false
+  @Input() searchLabel: string = null;
   @Input() userDetails: boolean = false
   size: number = 0;
   loaded: number = 0;
