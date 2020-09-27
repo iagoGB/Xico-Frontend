@@ -7,14 +7,14 @@
             </div>
             <div class="button-group">
                 <input hidden type="file" accept="Image/*" name="imagem" id="imagem" (change)="onChange($event)"/>
-                <input type="text" name="nome" id="nome"  placeholder="Nome" formControlName="name"/>
+                <input type="text" name="nome" id="nome"  placeholder="Nome" formControlName="name" maxlength="11"/>
                 <div class="pl-2" *ngIf="submitted && f.name.errors">
                     <div *ngIf="f.name.errors.required">
                         Campo obrigatório
                     </div>
                 </div>
                 <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" formControlName="lastName" />
-                <div class="pl-2" *ngIf="submitted && f.lastName.errors">
+                <div class="pl-2" *ngIf="submitted && f.lastName.errors" maxlength="10">
                     <div *ngIf="f.lastName.errors.required">
                         Campo obrigatório
                     </div>

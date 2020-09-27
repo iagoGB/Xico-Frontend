@@ -24,6 +24,10 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="list.length === 0 && getCurrentRoute()">
+            <h3 style="color:white">Sem resultado</h3>
+            
+        </div>
     </div>
    
 </div>

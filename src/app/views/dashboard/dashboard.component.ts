@@ -95,9 +95,9 @@ export class DashboardComponent implements OnInit {
     this.spinnerService.show();
     this.portfolioService.findByMore(value.value).subscribe((data) =>{
       const tool = toolsOptions.find(e => e.value === value);
-      if (value === "views")
-        this.searchLabel =  "Mais vistos";
-      else if (value === "likes")
+      if (value.value === "views")
+        this.searchLabel =  "Mais vizualizados";
+      else if (value.value === "likes")
         this.searchLabel =  "Mais avaliados";
       else 
         this.searchLabel =  "Mais recentes";
@@ -110,8 +110,10 @@ export class DashboardComponent implements OnInit {
 
   searchByTitle(){
     this.spinnerService.show();
-    this.portfolioService.findByTitle(this.selectedTitle).subscribe((data)=>{
-      
+    this.portfolioService.findByTitle(this.selectedTitle).subscribe((data) => {
+      this.list = data;
+      this.list.forEach(e => this.getUserName(e.userID));
+      this.spinnerService.hide();
     })
   }
 

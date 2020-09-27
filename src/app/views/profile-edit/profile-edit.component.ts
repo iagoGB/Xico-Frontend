@@ -72,7 +72,7 @@ export class ProfileEditComponent implements OnInit {
         nickname: data.nickname,
         entryDate: data.entryDate,
         description: data.description,
-        tools: data.tools.map(e => this.convertToTools(e)),
+        tools: data.tools.map(e => this.userService.convertToTools(e)),
         email: data.email,
         ig: data.ig,
         fb: data.fb

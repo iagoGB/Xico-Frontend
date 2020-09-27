@@ -40,18 +40,45 @@ export class UserService {
 
   convertToTools(tool: string){
     switch (this.getTool(tool)) {
-      case 'figma.svg':
+      case 'xd.png':
         return toolsOptions[0];
       
-      case 'reaper.svg':
+      case 'audacity.png':
         return toolsOptions[1];
 
-      case 'photshop.svg':
+      case 'blender.png':
         return  toolsOptions[2];
 
-      case 'lightroom.svg':
+      case 'Indesign.png':
         return toolsOptions[3];
+
+      case 'figma.png':
+        return toolsOptions[4];
     
+      case 'github.png':
+        return toolsOptions[5];
+      
+      case 'ai.png':
+        return toolsOptions[6];
+        
+      case 'inkscape.png':
+        return toolsOptions[7];
+
+      case 'lightroom.png':
+        return toolsOptions[8];
+
+      case 'photoshop.png':
+        return toolsOptions[9]; 
+
+      case 'reaper.svg':
+        return toolsOptions[10]; 
+
+      case 'sketch.png':
+        return toolsOptions[11]; 
+
+      case 'unity.png':
+        return toolsOptions[12]; 
+
       default:
         console.log('');
       break;
