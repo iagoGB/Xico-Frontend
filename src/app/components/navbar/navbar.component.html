@@ -1,11 +1,7 @@
 <nav class="navbar fixed-top">
-        <!-- <img class="lobo" src="/assets/logo.svg" alt="" srcset=""> -->
-        <div [routerLink]="['/']" class="logo">
-            <img class="logo"  src="/assets/logo.svg"  width="65" height="65" alt="" srcset="">
-
-        </div>
-   
-    <ul *ngIf="!isLoggedIn() else logged">
+    <div class="w-100">
+        <img  [routerLink]="['/']" class="position-absolute horizontal" src="/assets/logo_horizontal.svg" width="380"  height="260" alt="">
+    <ul class="mb-1" *ngIf="!isLoggedIn() else logged">
         
         <li [routerLink]="['/inscreva-se']">
             <button class="cadastro"> CADASTRE-SE</button> 
@@ -27,4 +23,6 @@
             </li>
         </ul>
     </ng-template>
+    </div> 
+    
 </nav>

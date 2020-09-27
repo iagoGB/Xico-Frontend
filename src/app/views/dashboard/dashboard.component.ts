@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     { display: "Mais avaliados", value:"likes" }
   ];
   public selectedMore: any;
-  public selectedTitle: any;
+  public selectedTitle: any = null;
   
   constructor(
     private route: ActivatedRoute,
@@ -109,6 +109,8 @@ export class DashboardComponent implements OnInit {
   }
 
   searchByTitle(){
+    if (this.selectedTitle === null || this.selectedTitle ==='')
+      return;
     this.spinnerService.show();
     this.portfolioService.findByTitle(this.selectedTitle).subscribe((data) => {
       this.list = data;
