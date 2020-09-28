@@ -93,7 +93,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onChangeMoreSearch(value: any){
-    console.log('chegou: '+JSON.stringify(value));
     this.spinnerService.show();
     this.portfolioService.findByMore(value.value).subscribe((data) =>{
       const tool = toolsOptions.find(e => e.value === value);

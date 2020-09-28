@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { TagModel } from 'ngx-chips/core/accessor';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -23,6 +24,7 @@ export class ProjectComponent implements OnInit {
   imageList: Array<any> = [];
   showToolsResult: boolean = false;
   toolsOptions:any[] = toolsOptions; 
+  modalRef: BsModalRef;
 
   constructor(
     private authService: AuthService,
@@ -30,6 +32,7 @@ export class ProjectComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private userService: UserService,
+    private modalService: BsModalService,
     private portfolioService: PortfolioService,
     private spinnerService: NgxSpinnerService
   ) { }
@@ -144,8 +147,6 @@ export class ProjectComponent implements OnInit {
   removeFromForm(index: number){
     const fileImages = this.projetoForm.get('files').value as Array<any>;
     fileImages.splice(index,1);
-    console.log('Removendo do form');
-
   }
 
   removeImage(index: number){
@@ -160,7 +161,6 @@ export class ProjectComponent implements OnInit {
     }
       
     this.spinnerService.show();
-    console.log('É pra atualizar!');
     this.portfolioService.updateProject(this.imageList, this.projetoForm.value).subscribe(
       (data) => {
         this.spinnerService.hide();
@@ -170,6 +170,27 @@ export class ProjectComponent implements OnInit {
     }, err => {
       this.spinnerService.hide();
       this.toastr.error('Ocorreu um erro ao tentar atualizar, tente novamente');
+    });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {
+      class: 'modal-dialog-centered'
+    });
+  }
+
+  handler(type: string, $event: ModalDirective){
+    setTimeout(() => {
+      this.modalRef.hide();
+    }, 2000);
+  }
+
+  deleteProject(){
+    const portfolioID = this.projetoForm.get('id').value;
+    this.portfolioService.delete(portfolioID).subscribe((success) => {
+      this.modalRef.hide();
+      document.getElementById('show-success').click();
+      this.location.back(); 
     });
   }
 }

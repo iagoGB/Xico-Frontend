@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class PortfolioService {
+  
   constructor(
     private httpService: HttpClient,
     private authService: AuthService
@@ -69,6 +70,10 @@ export class PortfolioService {
       return this.httpService.get<any[]>(`${ environment.apiUrl }/portfolio/moreViews`);
     else
       return this.httpService.get<any[]>(`${ environment.apiUrl }/portfolio/moreRecents`);
+  }
+
+  delete(portfolioID: number) {
+    return this.httpService.delete<any>(`${ environment.apiUrl }/portfolio/${ portfolioID }`);
   }
   
 }
