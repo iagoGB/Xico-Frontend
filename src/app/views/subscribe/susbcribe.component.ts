@@ -54,8 +54,11 @@ export class SusbcribeComponent implements OnInit {
     reader.readAsDataURL(this.image);
     const imgTag =  document.getElementsByTagName('img')[1];
     reader.onload = (_event) => { 
-      imgTag.style.width = '86%'
+      imgTag.style.width = '259px';
+      imgTag.style.height = '309px';
+      imgTag.style.marginTop = '10px';
       imgTag.style.padding = '5px';
+      imgTag.style.objectFit = 'cover';
       imgTag.src = reader.result.toString();
     }
   }

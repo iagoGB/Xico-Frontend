@@ -115,6 +115,7 @@ export class DashboardComponent implements OnInit {
       return;
     this.spinnerService.show();
     this.portfolioService.findByTitle(this.selectedTitle).subscribe((data) => {
+      this.searchLabel =  "Título: " + this.selectedTitle;
       this.list = data;
       this.list.forEach(e => this.getUserName(e.userID));
       this.spinnerService.hide();

@@ -123,6 +123,7 @@ export class ProjectComponent implements OnInit {
     this.spinnerService.show();
     this.portfolioService.save(this.imageList,this.projetoForm.value).subscribe(
       (success) => {
+        this.toastr.success('Novo projeto publicado!');
         this.location.back();
         this.spinnerService.hide();
       },
