@@ -7,8 +7,8 @@
                     <input type="file" name="images" id="images" (change)="loadImages($event)" accept="image/*" multiple
                         hidden />
                     <div class="col-4 mb-2">
-                        <div class="card" (click)="getImages()">
-                            <img class="new-project" src="/assets/load_images.svg" alt="">
+                        <div class="card new-project d-flex justify-content-center" (click)="getImages()">
+                            <img  src="/assets/load_images.svg" alt="">
                         </div>
                     </div>
                     <div 
@@ -18,7 +18,7 @@
                             <img class="card-img-top" [src]="image" alt="">
                             <div  class="position-absolute overlay w-100 h-100">
                             </div>
-                            <img  (click)="removeImage(i)" class="position-absolute close" style="top:50%; left: 50%; transform: translate(-50%,-50%); opacity: 1;" src="/assets/close.png" alt="">
+                            <img  (click)="removeFromForm(i)" class="position-absolute close" style="top:50%; left: 50%; transform: translate(-50%,-50%); opacity: 1;" src="/assets/close.png" alt="">
                         </div>
                         
                     </div>

@@ -37,6 +37,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
 
     this.projetoForm = new FormGroup({
+      id: new FormControl(null),
       category: new FormControl('DESIGN', Validators.required),
       userID: new FormControl(this.authService.getData().id, Validators.required),
       title: new FormControl(null, Validators.required),
@@ -63,6 +64,7 @@ export class ProjectComponent implements OnInit {
   setProjectForm(arg0: any) {
     this.portfolioService.findByID(arg0).subscribe((data:any) => {
       this.projetoForm.patchValue({
+        id: data.id,
         category: data.category,
         userID: data.userID,
         title: data.title,
@@ -138,13 +140,35 @@ export class ProjectComponent implements OnInit {
     return of(tag);
   }
 
+  removeFromForm(index: number){
+    const fileImages = this.projetoForm.get('files').value as Array<any>;
+    fileImages.splice(index,1);
+    console.log('Removendo do form');
+
+  }
+
   removeImage(index: number){
-    console.log(index);
     this.imageList.splice(index,1);
   }
 
   updateProject(){
+    const fileImages = this.projetoForm.get('files').value as Array<any>;
+    if (this.imageList.length === 0 && fileImages.length === 0) {
+      this.toastr.warning('Você deve selecionar pelo menos uma imagem!');
+      return;
+    }
+      
+    this.spinnerService.show();
     console.log('É pra atualizar!');
-    console.log(this.projetoForm.value);
+    this.portfolioService.updateProject(this.imageList, this.projetoForm.value).subscribe(
+      (data) => {
+        this.spinnerService.hide();
+        this.location.back();
+        this.toastr.success('Projeto atualizado!');
+  
+    }, err => {
+      this.spinnerService.hide();
+      this.toastr.error('Ocorreu um erro ao tentar atualizar, tente novamente');
+    });
   }
 }

@@ -23,6 +23,16 @@ export class PortfolioService {
     
   }
 
+  updateProject(imageList: any[], value: any) {
+    value.tools = value.tools.map(e => e.value);
+    const formData = new FormData();
+    imageList.forEach(image => {
+      formData.append('imagens', image.file);
+    });
+    formData.append('portfolio',JSON.stringify( value ));
+    return this.httpService.put<any>(`${ environment.apiUrl }/portfolio/${ value.id }`,formData);
+  }
+
   findByID(id:number) {
     return this.httpService.get(`${ environment.apiUrl }/portfolio/${ id }`);
   }
