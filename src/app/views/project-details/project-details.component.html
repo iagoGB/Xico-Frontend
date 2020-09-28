@@ -15,7 +15,7 @@
         <div class="no-border" style="width: 50%; height: 8px; background-color: black; margin-top: -5px"></div>
         <div class="user d-flex">
             <img *ngIf="user" style="object-fit: cover;" [src]="user.image" width="35" height="50" alt="">
-            <div class="info">
+            <div class="info ml-2">
                 <h5 [routerLink]="['/perfil',this.portfolio.userID ]">{{ user.nickname }}</h5>
                 <ul class="d-flex">
                     <li class="tag mr-2" *ngFor=" let tag of portfolio.tags" (click)="searchByTag(tag)">{{ tag }}</li>
